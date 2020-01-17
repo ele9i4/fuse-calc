@@ -1,12 +1,12 @@
 {
-  "name": "boilerplate",
-  "description": "Sapper boilerplate",
+  "name": "fuse-calc",
+  "description": "Avr Fuse Calculator",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
-    "export": "sapper export --legacy --basepath name",
+    "export": "sapper export --legacy",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",

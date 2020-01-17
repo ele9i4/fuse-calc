@@ -1664,8 +1664,9 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
-fulmo@../:
+"fulmo@https://github.com/Th0rN13/fulmo.git":
   version "0.1.1"
+  resolved "https://github.com/Th0rN13/fulmo.git#3d1e333c4eaa778f8e51150b7fc7bda11c979cf2"
 
 function-bind@^1.1.1:
   version "1.1.1"

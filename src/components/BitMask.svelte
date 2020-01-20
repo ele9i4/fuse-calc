@@ -1,9 +1,17 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
   export let mask;
   export let fillMask;
   export let type;
-  $: bits = parseInt(mask, 16);
-  $: fillBits = parseInt(fillMask, 16);
+
+  function handleClick (bit) {
+    const bitMask = (1 << (7 - bit));
+    if (bitMask & fillMask) {
+      mask ^= bitMask;
+      dispatch ('update', { mask });
+    }
+  }
 </script>
 
 <div
@@ -13,9 +21,10 @@
   >
   {#each Array(8) as _, i}
     <div
+      on:click={() => handleClick(i)}
       class="bit"
-      class:active={bits & (1 << (7 - i))}
-      class:fill={fillBits & (1 << (7 - i))}
+      class:active={mask & (1 << (7 - i))}
+      class:fill={fillMask & (1 << (7 - i))}
     />
   {/each}
 </div>

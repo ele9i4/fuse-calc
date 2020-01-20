@@ -16,9 +16,11 @@
   import FuseCalc from 'components/FuseCalc.svelte';
 
   export let ucList = [];
+  let filter = '';
   let selected = ucList[0];
   let ucData = {};
   let fullData = [];
+  let filteredList = [];
 
   onMount (() => {
     loadData();
@@ -29,19 +31,55 @@
     fullData = await data.json();
   }
 
-  $: ucData = fullData.find (({ name }) => name === selected);
+  function filterList () {
+    filteredList = ucList
+      .filter ((uc) => filter
+        .split (' ')
+        .every ((filterEl) => uc.includes (filterEl))
+      )
+    if (!filteredList.includes(selected)) {
+      selected = filteredList[0];
+      changeUc ();
+    }
+  }
+
+  function changeUc () {
+    ucData = fullData.find (({ name }) => name === selected);
+  }
+
+  $: changeUc (selected, fullData);
+  $: filterList (ucList, filter);
 </script>
 
 <AnimPage>
-  {#if ucList.length}
-    <select bind:value={selected}>
-      {#each ucList as uc}
-        <option value={uc} label={uc}>
-      {/each}
-    </select>
-  {:else}
-    <p>Loading...</p>
-  {/if}
-
-  <FuseCalc data={ucData} />
+  <div class="wrapper">
+    <div class="inputs">
+      <label>
+        Filter:
+        <input type="text" bind:value={filter}>
+      </label>
+      <br>
+      {#if filteredList.length}
+        <select bind:value={selected}>
+          {#each filteredList as uc (uc)}
+            <option value={uc} label={uc}>
+          {/each}
+        </select>
+      {:else if ucList.length}
+        <p>No find elements</p>
+      {:else}
+        <p>Loading...</p>
+      {/if}
+    </div>
+    <FuseCalc data={ucData} />
+  </div>
 </AnimPage>
+
+<style>
+  .wrapper {
+    display: flex;
+  }
+  .inputs {
+    display: block;
+  }
+</style>

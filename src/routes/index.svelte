@@ -2,32 +2,46 @@
   <title>Home</title>
 </svelte:head>
 
+<script context="module">
+  export async function preload() {
+    const data = await this.fetch('list.json');
+    const ucList = await data.json();
+    return { ucList };
+  }
+</script>
 <script>
   import { onMount } from 'svelte';
   import { Button, Checkbox } from 'fulmo/cmp';
-  import AnimPage from 'components/animate-page.svelte';
+  import AnimPage from 'components/AnimatePage.svelte';
+  import FuseCalc from 'components/FuseCalc.svelte';
 
-  let ucData = [];
-  let selected = '';
+  export let ucList = [];
+  let selected = ucList[0];
+  let ucData = {};
+  let fullData = [];
 
-  onMount(async () => {
-    const data = await fetch('/data');
-    ucData = await data.json();
-    selected = ucData[0].name;
+  onMount (() => {
+    loadData();
   });
 
+  async function loadData () {
+    const data = await fetch('data.json');
+    fullData = await data.json();
+  }
 
+  $: ucData = fullData.find (({ name }) => name === selected);
 </script>
 
 <AnimPage>
-  {#if ucData.length}
+  {#if ucList.length}
     <select bind:value={selected}>
-      {#each ucData as uc}
-        <option value={uc.name} label={uc.name}>
+      {#each ucList as uc}
+        <option value={uc} label={uc}>
       {/each}
     </select>
   {:else}
     <p>Loading...</p>
   {/if}
-  {selected}
+
+  <FuseCalc data={ucData} />
 </AnimPage>

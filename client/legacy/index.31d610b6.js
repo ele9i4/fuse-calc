@@ -1,19 +1,36 @@
-import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, i as init, s as safe_not_equal, e as _assertThisInitialized, f as dispatch_dev, g as _createClass, S as SvelteComponentDev, h as element, j as claim_element, k as children, m as detach_dev, o as attr_dev, T as toggle_class, q as add_location, r as insert_dev, v as _slicedToArray, n as noop, H as destroy_each, t as text, y as space, x as create_component, l as claim_text, A as claim_space, z as claim_component, u as append_dev, B as mount_component, w as set_data_dev, C as transition_in, D as transition_out, E as destroy_component, F as group_outros, G as check_outros, U as onMount, N as query_selector_all, V as select_value, W as prop_dev, X as add_render_callback, Y as select_option, Z as listen_dev } from './index.56d79383.js';
-import { _ as _asyncToGenerator, a as _regeneratorRuntime } from './index.7d7fc1af.js';
-import { A as AnimPage } from './AnimatePage.3cc1e952.js';
+import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, i as init, s as safe_not_equal, e as _assertThisInitialized, f as dispatch_dev, g as _createClass, S as SvelteComponentDev, T as createEventDispatcher, h as element, j as claim_element, k as children, m as detach_dev, o as attr_dev, U as toggle_class, q as add_location, r as insert_dev, V as listen_dev, v as _slicedToArray, n as noop, H as destroy_each, L as globals, t as text, l as claim_text, w as set_data_dev, y as space, x as create_component, A as claim_space, z as claim_component, u as append_dev, B as mount_component, C as transition_in, D as transition_out, E as destroy_component, W as bubble, F as group_outros, G as check_outros, X as onMount, N as query_selector_all, Y as select_value, Z as set_input_value, $ as prop_dev, a0 as add_render_callback, a1 as select_option, a2 as update_keyed_each, a3 as destroy_block } from './index.4984c9bf.js';
+import { _ as _asyncToGenerator, a as _regeneratorRuntime } from './index.e63ff74e.js';
+import { A as AnimPage } from './AnimatePage.c0c40068.js';
 
-var file = "src/components/Bit_Mask.svelte";
+var file = "src/components/BitMask.svelte";
 
 function get_each_context(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[5] = list[i];
-  child_ctx[7] = i;
+  child_ctx[6] = list[i];
+  child_ctx[8] = i;
   return child_ctx;
-} // (14:2) {#each Array(8) as _, i}
+} // (22:2) {#each Array(8) as _, i}
 
 
 function create_each_block(ctx) {
   var div;
+  var dispose;
+
+  function click_handler() {
+    var _ctx;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return (
+      /*click_handler*/
+      (_ctx = ctx)[5].apply(_ctx, [
+      /*i*/
+      ctx[8]].concat(args))
+    );
+  }
+
   var block = {
     c: function create() {
       div = element("div");
@@ -27,52 +44,56 @@ function create_each_block(ctx) {
       this.h();
     },
     h: function hydrate() {
-      attr_dev(div, "class", "bit svelte-gcld63");
+      attr_dev(div, "class", "bit svelte-j3udz1");
       toggle_class(div, "active",
-      /*bits*/
+      /*mask*/
+      ctx[0] & 1 << 7 -
+      /*i*/
+      ctx[8]);
+      toggle_class(div, "fill",
+      /*fillMask*/
       ctx[1] & 1 << 7 -
       /*i*/
-      ctx[7]);
-      toggle_class(div, "fill",
-      /*fillBits*/
-      ctx[2] & 1 << 7 -
-      /*i*/
-      ctx[7]);
-      add_location(div, file, 14, 4, 281);
+      ctx[8]);
+      add_location(div, file, 22, 4, 473);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
+      dispose = listen_dev(div, "click", click_handler, false, false, false);
     },
-    p: function update(ctx, dirty) {
+    p: function update(new_ctx, dirty) {
+      ctx = new_ctx;
+
       if (dirty &
-      /*bits*/
-      2) {
+      /*mask*/
+      1) {
         toggle_class(div, "active",
-        /*bits*/
-        ctx[1] & 1 << 7 -
+        /*mask*/
+        ctx[0] & 1 << 7 -
         /*i*/
-        ctx[7]);
+        ctx[8]);
       }
 
       if (dirty &
-      /*fillBits*/
-      4) {
+      /*fillMask*/
+      2) {
         toggle_class(div, "fill",
-        /*fillBits*/
-        ctx[2] & 1 << 7 -
+        /*fillMask*/
+        ctx[1] & 1 << 7 -
         /*i*/
-        ctx[7]);
+        ctx[8]);
       }
     },
     d: function destroy(detaching) {
       if (detaching) detach_dev(div);
+      dispose();
     }
   };
   dispatch_dev("SvelteRegisterBlock", {
     block: block,
     id: create_each_block.name,
     type: "each",
-    source: "(14:2) {#each Array(8) as _, i}",
+    source: "(22:2) {#each Array(8) as _, i}",
     ctx: ctx
   });
   return block;
@@ -111,14 +132,14 @@ function create_fragment(ctx) {
       this.h();
     },
     h: function hydrate() {
-      attr_dev(div, "class", "bitmask svelte-gcld63");
+      attr_dev(div, "class", "bitmask svelte-j3udz1");
       toggle_class(div, "bitfield",
       /*type*/
-      ctx[0] === "bitfield");
+      ctx[2] === "bitfield");
       toggle_class(div, "fuse",
       /*type*/
-      ctx[0] === "fuse");
-      add_location(div, file, 8, 0, 153);
+      ctx[2] === "fuse");
+      add_location(div, file, 16, 0, 345);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -132,8 +153,8 @@ function create_fragment(ctx) {
           dirty = _ref2[0];
 
       if (dirty &
-      /*bits, fillBits*/
-      6) {
+      /*mask, fillMask, handleClick*/
+      11) {
         each_value = Array(8);
 
         var _i4;
@@ -161,18 +182,18 @@ function create_fragment(ctx) {
 
       if (dirty &
       /*type*/
-      1) {
+      4) {
         toggle_class(div, "bitfield",
         /*type*/
-        ctx[0] === "bitfield");
+        ctx[2] === "bitfield");
       }
 
       if (dirty &
       /*type*/
-      1) {
+      4) {
         toggle_class(div, "fuse",
         /*type*/
-        ctx[0] === "fuse");
+        ctx[2] === "fuse");
       }
     },
     i: noop,
@@ -193,77 +214,73 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
+  var dispatch = createEventDispatcher();
   var mask = $$props.mask;
   var fillMask = $$props.fillMask;
   var type = $$props.type;
+
+  function handleClick(bit) {
+    var bitMask = 1 << 7 - bit;
+
+    if (bitMask & fillMask) {
+      $$invalidate(0, mask ^= bitMask);
+      dispatch("update", {
+        mask: mask
+      });
+    }
+  }
+
   var writable_props = ["mask", "fillMask", "type"];
   Object.keys($$props).forEach(function (key) {
-    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<Bit_Mask> was created with unknown prop '".concat(key, "'"));
+    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<BitMask> was created with unknown prop '".concat(key, "'"));
   });
 
+  var click_handler = function click_handler(i) {
+    return handleClick(i);
+  };
+
   $$self.$set = function ($$props) {
-    if ("mask" in $$props) $$invalidate(3, mask = $$props.mask);
-    if ("fillMask" in $$props) $$invalidate(4, fillMask = $$props.fillMask);
-    if ("type" in $$props) $$invalidate(0, type = $$props.type);
+    if ("mask" in $$props) $$invalidate(0, mask = $$props.mask);
+    if ("fillMask" in $$props) $$invalidate(1, fillMask = $$props.fillMask);
+    if ("type" in $$props) $$invalidate(2, type = $$props.type);
   };
 
   $$self.$capture_state = function () {
     return {
       mask: mask,
       fillMask: fillMask,
-      type: type,
-      bits: bits,
-      fillBits: fillBits
+      type: type
     };
   };
 
   $$self.$inject_state = function ($$props) {
-    if ("mask" in $$props) $$invalidate(3, mask = $$props.mask);
-    if ("fillMask" in $$props) $$invalidate(4, fillMask = $$props.fillMask);
-    if ("type" in $$props) $$invalidate(0, type = $$props.type);
-    if ("bits" in $$props) $$invalidate(1, bits = $$props.bits);
-    if ("fillBits" in $$props) $$invalidate(2, fillBits = $$props.fillBits);
+    if ("mask" in $$props) $$invalidate(0, mask = $$props.mask);
+    if ("fillMask" in $$props) $$invalidate(1, fillMask = $$props.fillMask);
+    if ("type" in $$props) $$invalidate(2, type = $$props.type);
   };
 
-  var bits;
-  var fillBits;
-
-  $$self.$$.update = function () {
-    if ($$self.$$.dirty &
-    /*mask*/
-    8) {
-       $$invalidate(1, bits = parseInt(mask, 16));
-    }
-
-    if ($$self.$$.dirty &
-    /*fillMask*/
-    16) {
-       $$invalidate(2, fillBits = parseInt(fillMask, 16));
-    }
-  };
-
-  return [type, bits, fillBits, mask, fillMask];
+  return [mask, fillMask, type, handleClick, dispatch, click_handler];
 }
 
-var Bit_Mask =
+var BitMask =
 /*#__PURE__*/
 function (_SvelteComponentDev) {
-  _inherits(Bit_Mask, _SvelteComponentDev);
+  _inherits(BitMask, _SvelteComponentDev);
 
-  function Bit_Mask(options) {
+  function BitMask(options) {
     var _this;
 
-    _classCallCheck(this, Bit_Mask);
+    _classCallCheck(this, BitMask);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Bit_Mask).call(this, options));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BitMask).call(this, options));
     init(_assertThisInitialized(_this), options, instance, create_fragment, safe_not_equal, {
-      mask: 3,
-      fillMask: 4,
-      type: 0
+      mask: 0,
+      fillMask: 1,
+      type: 2
     });
     dispatch_dev("SvelteRegisterComponent", {
       component: _assertThisInitialized(_this),
-      tagName: "Bit_Mask",
+      tagName: "BitMask",
       options: options,
       id: create_fragment.name
     });
@@ -272,55 +289,96 @@ function (_SvelteComponentDev) {
 
     if (
     /*mask*/
-    ctx[3] === undefined && !("mask" in props)) {
-      console.warn("<Bit_Mask> was created without expected prop 'mask'");
+    ctx[0] === undefined && !("mask" in props)) {
+      console.warn("<BitMask> was created without expected prop 'mask'");
     }
 
     if (
     /*fillMask*/
-    ctx[4] === undefined && !("fillMask" in props)) {
-      console.warn("<Bit_Mask> was created without expected prop 'fillMask'");
+    ctx[1] === undefined && !("fillMask" in props)) {
+      console.warn("<BitMask> was created without expected prop 'fillMask'");
     }
 
     if (
     /*type*/
-    ctx[0] === undefined && !("type" in props)) {
-      console.warn("<Bit_Mask> was created without expected prop 'type'");
+    ctx[2] === undefined && !("type" in props)) {
+      console.warn("<BitMask> was created without expected prop 'type'");
     }
 
     return _this;
   }
 
-  _createClass(Bit_Mask, [{
+  _createClass(BitMask, [{
     key: "mask",
     get: function get() {
-      throw new Error("<Bit_Mask>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+      throw new Error("<BitMask>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     },
     set: function set(value) {
-      throw new Error("<Bit_Mask>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+      throw new Error("<BitMask>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     }
   }, {
     key: "fillMask",
     get: function get() {
-      throw new Error("<Bit_Mask>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+      throw new Error("<BitMask>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     },
     set: function set(value) {
-      throw new Error("<Bit_Mask>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+      throw new Error("<BitMask>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     }
   }, {
     key: "type",
     get: function get() {
-      throw new Error("<Bit_Mask>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+      throw new Error("<BitMask>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     },
     set: function set(value) {
-      throw new Error("<Bit_Mask>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+      throw new Error("<BitMask>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     }
   }]);
 
-  return Bit_Mask;
+  return BitMask;
 }(SvelteComponentDev);
 
-var file$1 = "src/components/Bit_Field.svelte";
+var console_1 = globals.console;
+var file$1 = "src/components/BitField.svelte"; // (22:2) {#if bitField.valueLabel}
+
+function create_if_block(ctx) {
+  var t_value =
+  /*bitField*/
+  ctx[0].valuesArray.values.find(
+  /*func*/
+  ctx[7]).name + "";
+  var t;
+  var block = {
+    c: function create() {
+      t = text(t_value);
+    },
+    l: function claim(nodes) {
+      t = claim_text(nodes, t_value);
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, t, anchor);
+    },
+    p: function update(ctx, dirty) {
+      if (dirty &
+      /*bitField, shift, mask*/
+      13 && t_value !== (t_value =
+      /*bitField*/
+      ctx[0].valuesArray.values.find(
+      /*func*/
+      ctx[7]).name + "")) set_data_dev(t, t_value);
+    },
+    d: function destroy(detaching) {
+      if (detaching) detach_dev(t);
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block: block,
+    id: create_if_block.name,
+    type: "if",
+    source: "(22:2) {#if bitField.valueLabel}",
+    ctx: ctx
+  });
+  return block;
+}
 
 function create_fragment$1(ctx) {
   var div;
@@ -330,17 +388,26 @@ function create_fragment$1(ctx) {
   ctx[0].name + "";
   var t0;
   var t1;
+  var t2;
   var current;
-  var bitmask = new Bit_Mask({
+  var bitmask = new BitMask({
     props: {
-      mask: 0,
+      mask:
+      /*mask*/
+      ctx[2],
       fillMask:
-      /*bitField*/
-      ctx[0].mask,
+      /*fillMask*/
+      ctx[1],
       type: "bitfield"
     },
     $$inline: true
   });
+  bitmask.$on("update",
+  /*update_handler*/
+  ctx[6]);
+  var if_block =
+  /*bitField*/
+  ctx[0].valueLabel && create_if_block(ctx);
   var block = {
     c: function create() {
       div = element("div");
@@ -348,6 +415,8 @@ function create_fragment$1(ctx) {
       t0 = text(t0_value);
       t1 = space();
       create_component(bitmask.$$.fragment);
+      t2 = space();
+      if (if_block) if_block.c();
       this.h();
     },
     l: function claim(nodes) {
@@ -359,12 +428,14 @@ function create_fragment$1(ctx) {
       p_nodes.forEach(detach_dev);
       t1 = claim_space(div_nodes);
       claim_component(bitmask.$$.fragment, div_nodes);
+      t2 = claim_space(div_nodes);
+      if (if_block) if_block.l(div_nodes);
       div_nodes.forEach(detach_dev);
       this.h();
     },
     h: function hydrate() {
-      add_location(p, file$1, 6, 2, 94);
-      add_location(div, file$1, 5, 0, 86);
+      add_location(p, file$1, 19, 2, 400);
+      add_location(div, file$1, 18, 0, 392);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -372,6 +443,8 @@ function create_fragment$1(ctx) {
       append_dev(p, t0);
       append_dev(div, t1);
       mount_component(bitmask, div, null);
+      append_dev(div, t2);
+      if (if_block) if_block.m(div, null);
       current = true;
     },
     p: function update(ctx, _ref) {
@@ -385,11 +458,31 @@ function create_fragment$1(ctx) {
       ctx[0].name + "")) set_data_dev(t0, t0_value);
       var bitmask_changes = {};
       if (dirty &
-      /*bitField*/
-      1) bitmask_changes.fillMask =
-      /*bitField*/
-      ctx[0].mask;
+      /*mask*/
+      4) bitmask_changes.mask =
+      /*mask*/
+      ctx[2];
+      if (dirty &
+      /*fillMask*/
+      2) bitmask_changes.fillMask =
+      /*fillMask*/
+      ctx[1];
       bitmask.$set(bitmask_changes);
+
+      if (
+      /*bitField*/
+      ctx[0].valueLabel) {
+        if (if_block) {
+          if_block.p(ctx, dirty);
+        } else {
+          if_block = create_if_block(ctx);
+          if_block.c();
+          if_block.m(div, null);
+        }
+      } else if (if_block) {
+        if_block.d(1);
+        if_block = null;
+      }
     },
     i: function intro(local) {
       if (current) return;
@@ -403,6 +496,7 @@ function create_fragment$1(ctx) {
     d: function destroy(detaching) {
       if (detaching) detach_dev(div);
       destroy_component(bitmask);
+      if (if_block) if_block.d();
     }
   };
   dispatch_dev("SvelteRegisterBlock", {
@@ -417,45 +511,104 @@ function create_fragment$1(ctx) {
 
 function instance$1($$self, $$props, $$invalidate) {
   var bitField = $$props.bitField;
-  var writable_props = ["bitField"];
+  var fuseMask = $$props.fuseMask;
+
+  function findShift() {
+    for (var i = 0; i < 8; i++) {
+      if (fillMask & 1 << i) return i;
+    }
+
+    return 0;
+  }
+
+  var writable_props = ["bitField", "fuseMask"];
   Object.keys($$props).forEach(function (key) {
-    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<Bit_Field> was created with unknown prop '".concat(key, "'"));
+    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn("<BitField> was created with unknown prop '".concat(key, "'"));
   });
+
+  function update_handler(event) {
+    bubble($$self, event);
+  }
+
+  var func = function func(_ref3) {
+    var value = _ref3.value;
+    return parseInt(value, 16) << shift === mask;
+  };
 
   $$self.$set = function ($$props) {
     if ("bitField" in $$props) $$invalidate(0, bitField = $$props.bitField);
+    if ("fuseMask" in $$props) $$invalidate(4, fuseMask = $$props.fuseMask);
   };
 
   $$self.$capture_state = function () {
     return {
-      bitField: bitField
+      bitField: bitField,
+      fuseMask: fuseMask,
+      fillMask: fillMask,
+      mask: mask,
+      shift: shift
     };
   };
 
   $$self.$inject_state = function ($$props) {
     if ("bitField" in $$props) $$invalidate(0, bitField = $$props.bitField);
+    if ("fuseMask" in $$props) $$invalidate(4, fuseMask = $$props.fuseMask);
+    if ("fillMask" in $$props) $$invalidate(1, fillMask = $$props.fillMask);
+    if ("mask" in $$props) $$invalidate(2, mask = $$props.mask);
+    if ("shift" in $$props) $$invalidate(3, shift = $$props.shift);
   };
 
-  return [bitField];
+  var fillMask;
+  var mask;
+  var shift;
+
+  $$self.$$.update = function () {
+    if ($$self.$$.dirty &
+    /*bitField*/
+    1) {
+       $$invalidate(1, fillMask = parseInt(bitField.mask, 16));
+    }
+
+    if ($$self.$$.dirty &
+    /*fuseMask, bitField*/
+    17) {
+       $$invalidate(2, mask = fuseMask & bitField.mask);
+    }
+
+    if ($$self.$$.dirty &
+    /*fillMask*/
+    2) {
+       $$invalidate(3, shift = findShift());
+    }
+
+    if ($$self.$$.dirty &
+    /*bitField*/
+    1) {
+       console.log(bitField.valuesArray);
+    }
+  };
+
+  return [bitField, fillMask, mask, shift, fuseMask, findShift, update_handler, func];
 }
 
-var Bit_Field =
+var BitField =
 /*#__PURE__*/
 function (_SvelteComponentDev) {
-  _inherits(Bit_Field, _SvelteComponentDev);
+  _inherits(BitField, _SvelteComponentDev);
 
-  function Bit_Field(options) {
+  function BitField(options) {
     var _this;
 
-    _classCallCheck(this, Bit_Field);
+    _classCallCheck(this, BitField);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Bit_Field).call(this, options));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BitField).call(this, options));
     init(_assertThisInitialized(_this), options, instance$1, create_fragment$1, safe_not_equal, {
-      bitField: 0
+      bitField: 0,
+      fuseMask: 4
     });
     dispatch_dev("SvelteRegisterComponent", {
       component: _assertThisInitialized(_this),
-      tagName: "Bit_Field",
+      tagName: "BitField",
       options: options,
       id: create_fragment$1.name
     });
@@ -465,44 +618,78 @@ function (_SvelteComponentDev) {
     if (
     /*bitField*/
     ctx[0] === undefined && !("bitField" in props)) {
-      console.warn("<Bit_Field> was created without expected prop 'bitField'");
+      console_1.warn("<BitField> was created without expected prop 'bitField'");
+    }
+
+    if (
+    /*fuseMask*/
+    ctx[4] === undefined && !("fuseMask" in props)) {
+      console_1.warn("<BitField> was created without expected prop 'fuseMask'");
     }
 
     return _this;
   }
 
-  _createClass(Bit_Field, [{
+  _createClass(BitField, [{
     key: "bitField",
     get: function get() {
-      throw new Error("<Bit_Field>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+      throw new Error("<BitField>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     },
     set: function set(value) {
-      throw new Error("<Bit_Field>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+      throw new Error("<BitField>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    }
+  }, {
+    key: "fuseMask",
+    get: function get() {
+      throw new Error("<BitField>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    },
+    set: function set(value) {
+      throw new Error("<BitField>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     }
   }]);
 
-  return Bit_Field;
+  return BitField;
 }(SvelteComponentDev);
 
 var file$2 = "src/components/SingleFuse.svelte";
 
 function get_each_context$1(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[1] = list[i];
+  child_ctx[5] = list[i];
   return child_ctx;
-} // (10:2) {#each fuse.bitFields as bitField}
+} // (22:2) {#each fuse.bitFields as bitField}
 
 
 function create_each_block$1(ctx) {
   var current;
-  var bitfield = new Bit_Field({
+
+  function update_handler() {
+    var _ctx;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return (
+      /*update_handler*/
+      (_ctx = ctx)[4].apply(_ctx, [
+      /*bitField*/
+      ctx[5]].concat(args))
+    );
+  }
+
+  var bitfield = new BitField({
     props: {
       bitField:
       /*bitField*/
+      ctx[5],
+      fuseMask:
+      /*mask*/
       ctx[1]
     },
     $$inline: true
   });
+  bitfield.$on("update", update_handler);
   var block = {
     c: function create() {
       create_component(bitfield.$$.fragment);
@@ -514,12 +701,18 @@ function create_each_block$1(ctx) {
       mount_component(bitfield, target, anchor);
       current = true;
     },
-    p: function update(ctx, dirty) {
+    p: function update(new_ctx, dirty) {
+      ctx = new_ctx;
       var bitfield_changes = {};
       if (dirty &
       /*fuse*/
       1) bitfield_changes.bitField =
       /*bitField*/
+      ctx[5];
+      if (dirty &
+      /*mask*/
+      2) bitfield_changes.fuseMask =
+      /*mask*/
       ctx[1];
       bitfield.$set(bitfield_changes);
     },
@@ -540,7 +733,7 @@ function create_each_block$1(ctx) {
     block: block,
     id: create_each_block$1.name,
     type: "each",
-    source: "(10:2) {#each fuse.bitFields as bitField}",
+    source: "(22:2) {#each fuse.bitFields as bitField}",
     ctx: ctx
   });
   return block;
@@ -548,22 +741,32 @@ function create_each_block$1(ctx) {
 
 function create_fragment$2(ctx) {
   var div;
-  var p0;
+  var p;
   var t0_value =
   /*fuse*/
   ctx[0].name + "";
   var t0;
   var t1;
   var t2_value =
-  /*fuse*/
-  ctx[0].initval + "";
+  /*mask*/
+  ctx[1].toString(16).padStart(2, "0").toUpperCase() + "";
   var t2;
   var t3;
   var t4;
-  var p1;
-  var t5;
-  var t6;
   var current;
+  var bitmask = new BitMask({
+    props: {
+      mask:
+      /*mask*/
+      ctx[1],
+      fillMask: 255,
+      type: "fuse"
+    },
+    $$inline: true
+  });
+  bitmask.$on("update",
+  /*handleBitMaskUpdate*/
+  ctx[3]);
   var each_value =
   /*fuse*/
   ctx[0].bitFields;
@@ -579,34 +782,21 @@ function create_fragment$2(ctx) {
     });
   };
 
-  var bitmask = new Bit_Mask({
-    props: {
-      mask:
-      /*fuse*/
-      ctx[0].initval,
-      fillMask: "0xFF",
-      type: "fuse"
-    },
-    $$inline: true
-  });
   var block = {
     c: function create() {
       div = element("div");
-      p0 = element("p");
+      p = element("p");
       t0 = text(t0_value);
-      t1 = text(": ");
+      t1 = text(": 0x");
       t2 = text(t2_value);
       t3 = space();
+      create_component(bitmask.$$.fragment);
+      t4 = space();
 
       for (var _i = 0; _i < each_blocks.length; _i += 1) {
         each_blocks[_i].c();
       }
 
-      t4 = space();
-      p1 = element("p");
-      t5 = text("Current value:");
-      t6 = space();
-      create_component(bitmask.$$.fragment);
       this.h();
     },
     l: function claim(nodes) {
@@ -614,51 +804,42 @@ function create_fragment$2(ctx) {
         class: true
       });
       var div_nodes = children(div);
-      p0 = claim_element(div_nodes, "P", {});
-      var p0_nodes = children(p0);
-      t0 = claim_text(p0_nodes, t0_value);
-      t1 = claim_text(p0_nodes, ": ");
-      t2 = claim_text(p0_nodes, t2_value);
-      p0_nodes.forEach(detach_dev);
+      p = claim_element(div_nodes, "P", {});
+      var p_nodes = children(p);
+      t0 = claim_text(p_nodes, t0_value);
+      t1 = claim_text(p_nodes, ": 0x");
+      t2 = claim_text(p_nodes, t2_value);
+      p_nodes.forEach(detach_dev);
       t3 = claim_space(div_nodes);
+      claim_component(bitmask.$$.fragment, div_nodes);
+      t4 = claim_space(div_nodes);
 
       for (var _i2 = 0; _i2 < each_blocks.length; _i2 += 1) {
         each_blocks[_i2].l(div_nodes);
       }
 
-      t4 = claim_space(div_nodes);
-      p1 = claim_element(div_nodes, "P", {});
-      var p1_nodes = children(p1);
-      t5 = claim_text(p1_nodes, "Current value:");
-      p1_nodes.forEach(detach_dev);
-      t6 = claim_space(div_nodes);
-      claim_component(bitmask.$$.fragment, div_nodes);
       div_nodes.forEach(detach_dev);
       this.h();
     },
     h: function hydrate() {
-      add_location(p0, file$2, 8, 2, 161);
-      add_location(p1, file$2, 12, 2, 273);
-      attr_dev(div, "class", "single-fuse svelte-1xe7qbb");
-      add_location(div, file$2, 7, 0, 133);
+      add_location(p, file$2, 19, 2, 438);
+      attr_dev(div, "class", "single-fuse svelte-10jhp0m");
+      add_location(div, file$2, 18, 0, 410);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
-      append_dev(div, p0);
-      append_dev(p0, t0);
-      append_dev(p0, t1);
-      append_dev(p0, t2);
+      append_dev(div, p);
+      append_dev(p, t0);
+      append_dev(p, t1);
+      append_dev(p, t2);
       append_dev(div, t3);
+      mount_component(bitmask, div, null);
+      append_dev(div, t4);
 
       for (var _i3 = 0; _i3 < each_blocks.length; _i3 += 1) {
         each_blocks[_i3].m(div, null);
       }
 
-      append_dev(div, t4);
-      append_dev(div, p1);
-      append_dev(p1, t5);
-      append_dev(div, t6);
-      mount_component(bitmask, div, null);
       current = true;
     },
     p: function update(ctx, _ref) {
@@ -671,14 +852,21 @@ function create_fragment$2(ctx) {
       /*fuse*/
       ctx[0].name + "")) set_data_dev(t0, t0_value);
       if ((!current || dirty &
-      /*fuse*/
-      1) && t2_value !== (t2_value =
-      /*fuse*/
-      ctx[0].initval + "")) set_data_dev(t2, t2_value);
+      /*mask*/
+      2) && t2_value !== (t2_value =
+      /*mask*/
+      ctx[1].toString(16).padStart(2, "0").toUpperCase() + "")) set_data_dev(t2, t2_value);
+      var bitmask_changes = {};
+      if (dirty &
+      /*mask*/
+      2) bitmask_changes.mask =
+      /*mask*/
+      ctx[1];
+      bitmask.$set(bitmask_changes);
 
       if (dirty &
-      /*fuse*/
-      1) {
+      /*fuse, mask, handleBitFieldUpdate*/
+      7) {
         each_value =
         /*fuse*/
         ctx[0].bitFields;
@@ -699,7 +887,7 @@ function create_fragment$2(ctx) {
 
             transition_in(each_blocks[_i4], 1);
 
-            each_blocks[_i4].m(div, t4);
+            each_blocks[_i4].m(div, null);
           }
         }
 
@@ -711,39 +899,31 @@ function create_fragment$2(ctx) {
 
         check_outros();
       }
-
-      var bitmask_changes = {};
-      if (dirty &
-      /*fuse*/
-      1) bitmask_changes.mask =
-      /*fuse*/
-      ctx[0].initval;
-      bitmask.$set(bitmask_changes);
     },
     i: function intro(local) {
       if (current) return;
+      transition_in(bitmask.$$.fragment, local);
 
       for (var _i5 = 0; _i5 < each_value.length; _i5 += 1) {
         transition_in(each_blocks[_i5]);
       }
 
-      transition_in(bitmask.$$.fragment, local);
       current = true;
     },
     o: function outro(local) {
+      transition_out(bitmask.$$.fragment, local);
       each_blocks = each_blocks.filter(Boolean);
 
       for (var _i6 = 0; _i6 < each_blocks.length; _i6 += 1) {
         transition_out(each_blocks[_i6]);
       }
 
-      transition_out(bitmask.$$.fragment, local);
       current = false;
     },
     d: function destroy(detaching) {
       if (detaching) detach_dev(div);
-      destroy_each(each_blocks, detaching);
       destroy_component(bitmask);
+      destroy_each(each_blocks, detaching);
     }
   };
   dispatch_dev("SvelteRegisterBlock", {
@@ -759,10 +939,24 @@ function create_fragment$2(ctx) {
 function instance$2($$self, $$props, $$invalidate) {
   var _$$props$fuse = $$props.fuse,
       fuse = _$$props$fuse === void 0 ? {} : _$$props$fuse;
+
+  function handleBitFieldUpdate(event, maskStr) {
+    var bitFieldMask = parseInt(maskStr, 16);
+    $$invalidate(1, mask = mask & ~bitFieldMask | event.detail.mask);
+  }
+
+  function handleBitMaskUpdate(event) {
+    $$invalidate(1, mask = event.detail.mask);
+  }
+
   var writable_props = ["fuse"];
   Object.keys($$props).forEach(function (key) {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<SingleFuse> was created with unknown prop '".concat(key, "'"));
   });
+
+  var update_handler = function update_handler(bitField, event) {
+    return handleBitFieldUpdate(event, bitField.mask);
+  };
 
   $$self.$set = function ($$props) {
     if ("fuse" in $$props) $$invalidate(0, fuse = $$props.fuse);
@@ -770,15 +964,27 @@ function instance$2($$self, $$props, $$invalidate) {
 
   $$self.$capture_state = function () {
     return {
-      fuse: fuse
+      fuse: fuse,
+      mask: mask
     };
   };
 
   $$self.$inject_state = function ($$props) {
     if ("fuse" in $$props) $$invalidate(0, fuse = $$props.fuse);
+    if ("mask" in $$props) $$invalidate(1, mask = $$props.mask);
   };
 
-  return [fuse];
+  var mask;
+
+  $$self.$$.update = function () {
+    if ($$self.$$.dirty &
+    /*fuse*/
+    1) {
+       $$invalidate(1, mask = parseInt(fuse.initval, 16));
+    }
+  };
+
+  return [fuse, mask, handleBitFieldUpdate, handleBitMaskUpdate, update_handler];
 }
 
 var SingleFuse =
@@ -817,13 +1023,15 @@ function (_SvelteComponentDev) {
   return SingleFuse;
 }(SvelteComponentDev);
 
+var Object_1 = globals.Object,
+    console_1$1 = globals.console;
 var file$3 = "src/components/FuseCalc.svelte";
 
 function get_each_context$2(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[1] = list[i];
+  child_ctx[3] = list[i];
   return child_ctx;
-} // (17:2) {:else}
+} // (32:2) {:else}
 
 
 function create_else_block(ctx) {
@@ -843,7 +1051,7 @@ function create_else_block(ctx) {
       this.h();
     },
     h: function hydrate() {
-      add_location(p, file$3, 17, 4, 339);
+      add_location(p, file$3, 32, 4, 717);
     },
     m: function mount(target, anchor) {
       insert_dev(target, p, anchor);
@@ -860,14 +1068,14 @@ function create_else_block(ctx) {
     block: block,
     id: create_else_block.name,
     type: "else",
-    source: "(17:2) {:else}",
+    source: "(32:2) {:else}",
     ctx: ctx
   });
   return block;
-} // (10:2) {#if data.name}
+} // (23:2) {#if data.name}
 
 
-function create_if_block(ctx) {
+function create_if_block$1(ctx) {
   var div0;
   var t0;
   var t1_value =
@@ -876,6 +1084,13 @@ function create_if_block(ctx) {
   var t1;
   var t2;
   var div1;
+  var t3;
+  var t4_value = Object.keys(
+  /*fuseObj*/
+  ctx[1]) + "";
+  var t4;
+  var t5;
+  var div2;
   var current;
   var each_value =
   /*data*/
@@ -899,6 +1114,10 @@ function create_if_block(ctx) {
       t1 = text(t1_value);
       t2 = space();
       div1 = element("div");
+      t3 = text("List: ");
+      t4 = text(t4_value);
+      t5 = space();
+      div2 = element("div");
 
       for (var _i = 0; _i < each_blocks.length; _i += 1) {
         each_blocks[_i].c();
@@ -919,19 +1138,29 @@ function create_if_block(ctx) {
         class: true
       });
       var div1_nodes = children(div1);
+      t3 = claim_text(div1_nodes, "List: ");
+      t4 = claim_text(div1_nodes, t4_value);
+      div1_nodes.forEach(detach_dev);
+      t5 = claim_space(nodes);
+      div2 = claim_element(nodes, "DIV", {
+        class: true
+      });
+      var div2_nodes = children(div2);
 
       for (var _i2 = 0; _i2 < each_blocks.length; _i2 += 1) {
-        each_blocks[_i2].l(div1_nodes);
+        each_blocks[_i2].l(div2_nodes);
       }
 
-      div1_nodes.forEach(detach_dev);
+      div2_nodes.forEach(detach_dev);
       this.h();
     },
     h: function hydrate() {
       attr_dev(div0, "class", "name");
-      add_location(div0, file$3, 10, 4, 164);
-      attr_dev(div1, "class", "fuses svelte-uz66cd");
-      add_location(div1, file$3, 11, 4, 217);
+      add_location(div0, file$3, 23, 4, 453);
+      attr_dev(div1, "class", "command");
+      add_location(div1, file$3, 24, 4, 506);
+      attr_dev(div2, "class", "fuses svelte-uz66cd");
+      add_location(div2, file$3, 26, 4, 567);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div0, anchor);
@@ -939,9 +1168,13 @@ function create_if_block(ctx) {
       append_dev(div0, t1);
       insert_dev(target, t2, anchor);
       insert_dev(target, div1, anchor);
+      append_dev(div1, t3);
+      append_dev(div1, t4);
+      insert_dev(target, t5, anchor);
+      insert_dev(target, div2, anchor);
 
       for (var _i3 = 0; _i3 < each_blocks.length; _i3 += 1) {
-        each_blocks[_i3].m(div1, null);
+        each_blocks[_i3].m(div2, null);
       }
 
       current = true;
@@ -952,9 +1185,14 @@ function create_if_block(ctx) {
       1) && t1_value !== (t1_value =
       /*data*/
       ctx[0].name + "")) set_data_dev(t1, t1_value);
+      if ((!current || dirty &
+      /*fuseObj*/
+      2) && t4_value !== (t4_value = Object.keys(
+      /*fuseObj*/
+      ctx[1]) + "")) set_data_dev(t4, t4_value);
 
       if (dirty &
-      /*data*/
+      /*data, handleUpdateFuse*/
       1) {
         each_value =
         /*data*/
@@ -976,7 +1214,7 @@ function create_if_block(ctx) {
 
             transition_in(each_blocks[_i4], 1);
 
-            each_blocks[_i4].m(div1, null);
+            each_blocks[_i4].m(div2, null);
           }
         }
 
@@ -1011,18 +1249,20 @@ function create_if_block(ctx) {
       if (detaching) detach_dev(div0);
       if (detaching) detach_dev(t2);
       if (detaching) detach_dev(div1);
+      if (detaching) detach_dev(t5);
+      if (detaching) detach_dev(div2);
       destroy_each(each_blocks, detaching);
     }
   };
   dispatch_dev("SvelteRegisterBlock", {
     block: block,
-    id: create_if_block.name,
+    id: create_if_block$1.name,
     type: "if",
-    source: "(10:2) {#if data.name}",
+    source: "(23:2) {#if data.name}",
     ctx: ctx
   });
   return block;
-} // (13:6) {#each data.fuses as fuse}
+} // (28:6) {#each data.fuses as fuse}
 
 
 function create_each_block$2(ctx) {
@@ -1031,10 +1271,11 @@ function create_each_block$2(ctx) {
     props: {
       fuse:
       /*fuse*/
-      ctx[1]
+      ctx[3]
     },
     $$inline: true
   });
+  singlefuse.$on("update", handleUpdateFuse);
   var block = {
     c: function create() {
       create_component(singlefuse.$$.fragment);
@@ -1052,7 +1293,7 @@ function create_each_block$2(ctx) {
       /*data*/
       1) singlefuse_changes.fuse =
       /*fuse*/
-      ctx[1];
+      ctx[3];
       singlefuse.$set(singlefuse_changes);
     },
     i: function intro(local) {
@@ -1072,7 +1313,7 @@ function create_each_block$2(ctx) {
     block: block,
     id: create_each_block$2.name,
     type: "each",
-    source: "(13:6) {#each data.fuses as fuse}",
+    source: "(28:6) {#each data.fuses as fuse}",
     ctx: ctx
   });
   return block;
@@ -1080,13 +1321,10 @@ function create_each_block$2(ctx) {
 
 function create_fragment$3(ctx) {
   var div;
-  var h2;
-  var t0;
-  var t1;
   var current_block_type_index;
   var if_block;
   var current;
-  var if_block_creators = [create_if_block, create_else_block];
+  var if_block_creators = [create_if_block$1, create_else_block];
   var if_blocks = [];
 
   function select_block_type(ctx, dirty) {
@@ -1101,9 +1339,6 @@ function create_fragment$3(ctx) {
   var block = {
     c: function create() {
       div = element("div");
-      h2 = element("h2");
-      t0 = text("Fuse calc");
-      t1 = space();
       if_block.c();
       this.h();
     },
@@ -1112,25 +1347,16 @@ function create_fragment$3(ctx) {
         class: true
       });
       var div_nodes = children(div);
-      h2 = claim_element(div_nodes, "H2", {});
-      var h2_nodes = children(h2);
-      t0 = claim_text(h2_nodes, "Fuse calc");
-      h2_nodes.forEach(detach_dev);
-      t1 = claim_space(div_nodes);
       if_block.l(div_nodes);
       div_nodes.forEach(detach_dev);
       this.h();
     },
     h: function hydrate() {
-      add_location(h2, file$3, 6, 2, 115);
       attr_dev(div, "class", "wrapper svelte-uz66cd");
-      add_location(div, file$3, 5, 0, 91);
+      add_location(div, file$3, 21, 0, 409);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
-      append_dev(div, h2);
-      append_dev(h2, t0);
-      append_dev(div, t1);
       if_blocks[current_block_type_index].m(div, null);
       current = true;
     },
@@ -1184,12 +1410,25 @@ function create_fragment$3(ctx) {
   return block;
 }
 
+function handleUpdateFuse(event) {
+  console.log(event.details);
+}
+
 function instance$3($$self, $$props, $$invalidate) {
   var _$$props$data = $$props.data,
       data = _$$props$data === void 0 ? {} : _$$props$data;
+  var fuseObj = [];
+
+  function getFuseNames() {
+    return data.fuses ? data.fuses.reduce(function (res, fuse) {
+      res[fuse.name] = fuse.initval;
+      return res;
+    }, {}) : {};
+  }
+
   var writable_props = ["data"];
-  Object.keys($$props).forEach(function (key) {
-    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<FuseCalc> was created with unknown prop '".concat(key, "'"));
+  Object_1.keys($$props).forEach(function (key) {
+    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn("<FuseCalc> was created with unknown prop '".concat(key, "'"));
   });
 
   $$self.$set = function ($$props) {
@@ -1198,15 +1437,25 @@ function instance$3($$self, $$props, $$invalidate) {
 
   $$self.$capture_state = function () {
     return {
-      data: data
+      data: data,
+      fuseObj: fuseObj
     };
   };
 
   $$self.$inject_state = function ($$props) {
     if ("data" in $$props) $$invalidate(0, data = $$props.data);
+    if ("fuseObj" in $$props) $$invalidate(1, fuseObj = $$props.fuseObj);
   };
 
-  return [data];
+  $$self.$$.update = function () {
+    if ($$self.$$.dirty &
+    /*data*/
+    1) {
+       $$invalidate(1, fuseObj = getFuseNames());
+    }
+  };
+
+  return [data, fuseObj];
 }
 
 var FuseCalc =
@@ -1249,9 +1498,9 @@ var file$4 = "src/routes/index.svelte";
 
 function get_each_context$3(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[6] = list[i];
+  child_ctx[11] = list[i];
   return child_ctx;
-} // (42:2) {:else}
+} // (70:6) {:else}
 
 
 function create_else_block$1(ctx) {
@@ -1271,7 +1520,7 @@ function create_else_block$1(ctx) {
       this.h();
     },
     h: function hydrate() {
-      add_location(p, file$4, 42, 4, 940);
+      add_location(p, file$4, 70, 8, 1622);
     },
     m: function mount(target, anchor) {
       insert_dev(target, p, anchor);
@@ -1286,23 +1535,72 @@ function create_else_block$1(ctx) {
     block: block,
     id: create_else_block$1.name,
     type: "else",
-    source: "(42:2) {:else}",
+    source: "(70:6) {:else}",
     ctx: ctx
   });
   return block;
-} // (36:2) {#if ucList.length}
+} // (68:30) 
 
 
-function create_if_block$1(ctx) {
+function create_if_block_1(ctx) {
+  var p;
+  var t;
+  var block = {
+    c: function create() {
+      p = element("p");
+      t = text("No find elements");
+      this.h();
+    },
+    l: function claim(nodes) {
+      p = claim_element(nodes, "P", {});
+      var p_nodes = children(p);
+      t = claim_text(p_nodes, "No find elements");
+      p_nodes.forEach(detach_dev);
+      this.h();
+    },
+    h: function hydrate() {
+      add_location(p, file$4, 68, 8, 1576);
+    },
+    m: function mount(target, anchor) {
+      insert_dev(target, p, anchor);
+      append_dev(p, t);
+    },
+    p: noop,
+    d: function destroy(detaching) {
+      if (detaching) detach_dev(p);
+    }
+  };
+  dispatch_dev("SvelteRegisterBlock", {
+    block: block,
+    id: create_if_block_1.name,
+    type: "if",
+    source: "(68:30) ",
+    ctx: ctx
+  });
+  return block;
+} // (62:6) {#if filteredList.length}
+
+
+function create_if_block$2(ctx) {
   var select;
+  var each_blocks = [];
+  var each_1_lookup = new Map();
   var dispose;
   var each_value =
-  /*ucList*/
-  ctx[0];
-  var each_blocks = [];
+  /*filteredList*/
+  ctx[4];
+
+  var get_key = function get_key(ctx) {
+    return (
+      /*uc*/
+      ctx[11]
+    );
+  };
 
   for (var i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block$3(get_each_context$3(ctx, each_value, i));
+    var child_ctx = get_each_context$3(ctx, each_value, i);
+    var key = get_key(child_ctx);
+    each_1_lookup.set(key, each_blocks[i] = create_each_block$3(key, child_ctx));
   }
 
   var block = {
@@ -1329,13 +1627,13 @@ function create_if_block$1(ctx) {
     h: function hydrate() {
       if (
       /*selected*/
-      ctx[1] === void 0) add_render_callback(function () {
+      ctx[2] === void 0) add_render_callback(function () {
         return (
           /*select_change_handler*/
-          ctx[5].call(select)
+          ctx[10].call(select)
         );
       });
-      add_location(select, file$4, 36, 4, 801);
+      add_location(select, file$4, 62, 8, 1385);
     },
     m: function mount(target, anchor) {
       insert_dev(target, select, anchor);
@@ -1346,72 +1644,53 @@ function create_if_block$1(ctx) {
 
       select_option(select,
       /*selected*/
-      ctx[1]);
+      ctx[2]);
       dispose = listen_dev(select, "change",
       /*select_change_handler*/
-      ctx[5]);
+      ctx[10]);
     },
     p: function update(ctx, dirty) {
-      if (dirty &
-      /*ucList*/
-      1) {
-        each_value =
-        /*ucList*/
-        ctx[0];
-
-        var _i4;
-
-        for (_i4 = 0; _i4 < each_value.length; _i4 += 1) {
-          var child_ctx = get_each_context$3(ctx, each_value, _i4);
-
-          if (each_blocks[_i4]) {
-            each_blocks[_i4].p(child_ctx, dirty);
-          } else {
-            each_blocks[_i4] = create_each_block$3(child_ctx);
-
-            each_blocks[_i4].c();
-
-            each_blocks[_i4].m(select, null);
-          }
-        }
-
-        for (; _i4 < each_blocks.length; _i4 += 1) {
-          each_blocks[_i4].d(1);
-        }
-
-        each_blocks.length = each_value.length;
-      }
+      var each_value =
+      /*filteredList*/
+      ctx[4];
+      each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, select, destroy_block, create_each_block$3, null, get_each_context$3);
 
       if (dirty &
       /*selected*/
-      2) {
+      4) {
         select_option(select,
         /*selected*/
-        ctx[1]);
+        ctx[2]);
       }
     },
     d: function destroy(detaching) {
       if (detaching) detach_dev(select);
-      destroy_each(each_blocks, detaching);
+
+      for (var _i4 = 0; _i4 < each_blocks.length; _i4 += 1) {
+        each_blocks[_i4].d();
+      }
+
       dispose();
     }
   };
   dispatch_dev("SvelteRegisterBlock", {
     block: block,
-    id: create_if_block$1.name,
+    id: create_if_block$2.name,
     type: "if",
-    source: "(36:2) {#if ucList.length}",
+    source: "(62:6) {#if filteredList.length}",
     ctx: ctx
   });
   return block;
-} // (38:6) {#each ucList as uc}
+} // (64:10) {#each filteredList as uc (uc)}
 
 
-function create_each_block$3(ctx) {
+function create_each_block$3(key_1, ctx) {
   var option;
   var option_value_value;
   var option_label_value;
   var block = {
+    key: key_1,
+    first: null,
     c: function create() {
       option = element("option");
       this.h();
@@ -1428,32 +1707,33 @@ function create_each_block$3(ctx) {
     h: function hydrate() {
       option.__value = option_value_value =
       /*uc*/
-      ctx[6];
+      ctx[11];
       option.value = option.__value;
       attr_dev(option, "label", option_label_value =
       /*uc*/
-      ctx[6]);
-      add_location(option, file$4, 38, 8, 867);
+      ctx[11]);
+      add_location(option, file$4, 64, 12, 1470);
+      this.first = option;
     },
     m: function mount(target, anchor) {
       insert_dev(target, option, anchor);
     },
     p: function update(ctx, dirty) {
       if (dirty &
-      /*ucList*/
-      1 && option_value_value !== (option_value_value =
+      /*filteredList*/
+      16 && option_value_value !== (option_value_value =
       /*uc*/
-      ctx[6])) {
+      ctx[11])) {
         prop_dev(option, "__value", option_value_value);
       }
 
       option.value = option.__value;
 
       if (dirty &
-      /*ucList*/
-      1 && option_label_value !== (option_label_value =
+      /*filteredList*/
+      16 && option_label_value !== (option_label_value =
       /*uc*/
-      ctx[6])) {
+      ctx[11])) {
         attr_dev(option, "label", option_label_value);
       }
     },
@@ -1465,21 +1745,33 @@ function create_each_block$3(ctx) {
     block: block,
     id: create_each_block$3.name,
     type: "each",
-    source: "(38:6) {#each ucList as uc}",
+    source: "(64:10) {#each filteredList as uc (uc)}",
     ctx: ctx
   });
   return block;
-} // (35:0) <AnimPage>
+} // (54:0) <AnimPage>
 
 
 function create_default_slot(ctx) {
-  var t;
+  var div1;
+  var div0;
+  var label;
+  var t0;
+  var input;
+  var t1;
+  var br;
+  var t2;
+  var t3;
   var current;
+  var dispose;
 
   function select_block_type(ctx, dirty) {
     if (
+    /*filteredList*/
+    ctx[4].length) return create_if_block$2;
+    if (
     /*ucList*/
-    ctx[0].length) return create_if_block$1;
+    ctx[0].length) return create_if_block_1;
     return create_else_block$1;
   }
 
@@ -1489,28 +1781,92 @@ function create_default_slot(ctx) {
     props: {
       data:
       /*ucData*/
-      ctx[2]
+      ctx[3]
     },
     $$inline: true
   });
   var block = {
     c: function create() {
+      div1 = element("div");
+      div0 = element("div");
+      label = element("label");
+      t0 = text("Filter:\n        ");
+      input = element("input");
+      t1 = space();
+      br = element("br");
+      t2 = space();
       if_block.c();
-      t = space();
+      t3 = space();
       create_component(fusecalc.$$.fragment);
+      this.h();
     },
     l: function claim(nodes) {
-      if_block.l(nodes);
-      t = claim_space(nodes);
-      claim_component(fusecalc.$$.fragment, nodes);
+      div1 = claim_element(nodes, "DIV", {
+        class: true
+      });
+      var div1_nodes = children(div1);
+      div0 = claim_element(div1_nodes, "DIV", {
+        class: true
+      });
+      var div0_nodes = children(div0);
+      label = claim_element(div0_nodes, "LABEL", {});
+      var label_nodes = children(label);
+      t0 = claim_text(label_nodes, "Filter:\n        ");
+      input = claim_element(label_nodes, "INPUT", {
+        type: true
+      });
+      label_nodes.forEach(detach_dev);
+      t1 = claim_space(div0_nodes);
+      br = claim_element(div0_nodes, "BR", {});
+      t2 = claim_space(div0_nodes);
+      if_block.l(div0_nodes);
+      div0_nodes.forEach(detach_dev);
+      t3 = claim_space(div1_nodes);
+      claim_component(fusecalc.$$.fragment, div1_nodes);
+      div1_nodes.forEach(detach_dev);
+      this.h();
+    },
+    h: function hydrate() {
+      attr_dev(input, "type", "text");
+      add_location(input, file$4, 58, 8, 1279);
+      add_location(label, file$4, 56, 6, 1247);
+      add_location(br, file$4, 60, 6, 1340);
+      attr_dev(div0, "class", "inputs svelte-1a946pc");
+      add_location(div0, file$4, 55, 4, 1220);
+      attr_dev(div1, "class", "wrapper svelte-1a946pc");
+      add_location(div1, file$4, 54, 2, 1194);
     },
     m: function mount(target, anchor) {
-      if_block.m(target, anchor);
-      insert_dev(target, t, anchor);
-      mount_component(fusecalc, target, anchor);
+      insert_dev(target, div1, anchor);
+      append_dev(div1, div0);
+      append_dev(div0, label);
+      append_dev(label, t0);
+      append_dev(label, input);
+      set_input_value(input,
+      /*filter*/
+      ctx[1]);
+      append_dev(div0, t1);
+      append_dev(div0, br);
+      append_dev(div0, t2);
+      if_block.m(div0, null);
+      append_dev(div1, t3);
+      mount_component(fusecalc, div1, null);
       current = true;
+      dispose = listen_dev(input, "input",
+      /*input_input_handler*/
+      ctx[9]);
     },
     p: function update(ctx, dirty) {
+      if (dirty &
+      /*filter*/
+      2 && input.value !==
+      /*filter*/
+      ctx[1]) {
+        set_input_value(input,
+        /*filter*/
+        ctx[1]);
+      }
+
       if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
         if_block.p(ctx, dirty);
       } else {
@@ -1519,16 +1875,16 @@ function create_default_slot(ctx) {
 
         if (if_block) {
           if_block.c();
-          if_block.m(t.parentNode, t);
+          if_block.m(div0, null);
         }
       }
 
       var fusecalc_changes = {};
       if (dirty &
       /*ucData*/
-      4) fusecalc_changes.data =
+      8) fusecalc_changes.data =
       /*ucData*/
-      ctx[2];
+      ctx[3];
       fusecalc.$set(fusecalc_changes);
     },
     i: function intro(local) {
@@ -1541,16 +1897,17 @@ function create_default_slot(ctx) {
       current = false;
     },
     d: function destroy(detaching) {
-      if_block.d(detaching);
-      if (detaching) detach_dev(t);
-      destroy_component(fusecalc, detaching);
+      if (detaching) detach_dev(div1);
+      if_block.d();
+      destroy_component(fusecalc);
+      dispose();
     }
   };
   dispatch_dev("SvelteRegisterBlock", {
     block: block,
     id: create_default_slot.name,
     type: "slot",
-    source: "(35:0) <AnimPage>",
+    source: "(54:0) <AnimPage>",
     ctx: ctx
   });
   return block;
@@ -1598,8 +1955,8 @@ function create_fragment$4(ctx) {
       var animpage_changes = {};
 
       if (dirty &
-      /*$$scope, ucData, ucList, selected*/
-      519) {
+      /*$$scope, ucData, filteredList, selected, ucList, filter*/
+      16415) {
         animpage_changes.$$scope = {
           dirty: dirty,
           ctx: ctx
@@ -1672,9 +2029,11 @@ function _preload() {
 function instance$4($$self, $$props, $$invalidate) {
   var _$$props$ucList = $$props.ucList,
       ucList = _$$props$ucList === void 0 ? [] : _$$props$ucList;
+  var filter = "";
   var selected = ucList[0];
   var ucData = {};
   var fullData = [];
+  var filteredList = [];
   onMount(function () {
     loadData();
   });
@@ -1703,7 +2062,7 @@ function instance$4($$self, $$props, $$invalidate) {
 
             case 6:
               _context.t1 = fullData = _context.sent;
-              (0, _context.t0)(3, _context.t1);
+              (0, _context.t0)(5, _context.t1);
 
             case 8:
             case "end":
@@ -1715,15 +2074,40 @@ function instance$4($$self, $$props, $$invalidate) {
     return _loadData.apply(this, arguments);
   }
 
+  function filterList() {
+    $$invalidate(4, filteredList = ucList.filter(function (uc) {
+      return filter.split(" ").every(function (filterEl) {
+        return uc.includes(filterEl);
+      });
+    }));
+
+    if (!filteredList.includes(selected)) {
+      $$invalidate(2, selected = filteredList[0]);
+      changeUc();
+    }
+  }
+
+  function changeUc() {
+    $$invalidate(3, ucData = fullData.find(function (_ref3) {
+      var name = _ref3.name;
+      return name === selected;
+    }));
+  }
+
   var writable_props = ["ucList"];
   Object.keys($$props).forEach(function (key) {
     if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<Routes> was created with unknown prop '".concat(key, "'"));
   });
 
+  function input_input_handler() {
+    filter = this.value;
+    $$invalidate(1, filter);
+  }
+
   function select_change_handler() {
     selected = select_value(this);
-    $$invalidate(1, selected);
-    $$invalidate(0, ucList);
+    $$invalidate(2, selected);
+    $$invalidate(4, filteredList);
   }
 
   $$self.$set = function ($$props) {
@@ -1733,31 +2117,38 @@ function instance$4($$self, $$props, $$invalidate) {
   $$self.$capture_state = function () {
     return {
       ucList: ucList,
+      filter: filter,
       selected: selected,
       ucData: ucData,
-      fullData: fullData
+      fullData: fullData,
+      filteredList: filteredList
     };
   };
 
   $$self.$inject_state = function ($$props) {
     if ("ucList" in $$props) $$invalidate(0, ucList = $$props.ucList);
-    if ("selected" in $$props) $$invalidate(1, selected = $$props.selected);
-    if ("ucData" in $$props) $$invalidate(2, ucData = $$props.ucData);
-    if ("fullData" in $$props) $$invalidate(3, fullData = $$props.fullData);
+    if ("filter" in $$props) $$invalidate(1, filter = $$props.filter);
+    if ("selected" in $$props) $$invalidate(2, selected = $$props.selected);
+    if ("ucData" in $$props) $$invalidate(3, ucData = $$props.ucData);
+    if ("fullData" in $$props) $$invalidate(5, fullData = $$props.fullData);
+    if ("filteredList" in $$props) $$invalidate(4, filteredList = $$props.filteredList);
   };
 
   $$self.$$.update = function () {
     if ($$self.$$.dirty &
-    /*fullData, selected*/
-    10) {
-       $$invalidate(2, ucData = fullData.find(function (_ref3) {
-        var name = _ref3.name;
-        return name === selected;
-      }));
+    /*selected, fullData*/
+    36) {
+       changeUc();
+    }
+
+    if ($$self.$$.dirty &
+    /*ucList, filter*/
+    3) {
+       filterList();
     }
   };
 
-  return [ucList, selected, ucData, fullData, loadData, select_change_handler];
+  return [ucList, filter, selected, ucData, filteredList, fullData, loadData, filterList, changeUc, input_input_handler, select_change_handler];
 }
 
 var Routes =

@@ -1,6 +1,6 @@
 <script>
-  import BitField from './BitField.svelte';
-  import BitMask from './BitMask.svelte';
+  import BitField from './Bit_Field.svelte';
+  import BitMask from './Bit_Mask.svelte';
   export let fuse = {};
 
 </script>

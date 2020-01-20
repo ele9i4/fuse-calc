@@ -4,7 +4,7 @@
   let fuseObj = [];
 
   function getFuseNames () {
-    return (data.fuses)
+    return (data && data.fuses)
       ? data.fuses.reduce ((res, fuse) => {
         res[fuse.name] = fuse.initval;
         return res
@@ -20,7 +20,7 @@
 </script>
 
 <div class="wrapper">
-  {#if data.name}
+  {#if data && data.name}
     <div class="name">Selected uc: {data.name}</div>
     <div class="command">List: {Object.keys(fuseObj)}</div>
 

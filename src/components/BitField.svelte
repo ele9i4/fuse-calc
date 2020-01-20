@@ -13,7 +13,6 @@
   $: fillMask = parseInt(bitField.mask, 16);
   $: mask = fuseMask & bitField.mask;
   $: shift = findShift(fillMask);
-  $: console.log(bitField.valuesArray);
 </script>
 
 <div>

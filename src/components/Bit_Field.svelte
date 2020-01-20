@@ -1,5 +1,5 @@
 <script>
-  import BitMask from './Bitmask.svelte';
+  import BitMask from './Bit_Mask.svelte';
   export let bitField;
 </script>
 

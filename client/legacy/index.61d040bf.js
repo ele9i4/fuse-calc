@@ -288,6 +288,23 @@ function safe_not_equal(a, b) {
   return a != a ? b == b : a !== b || a && _typeof(a) === 'object' || typeof a === 'function';
 }
 
+function validate_store(store, name) {
+  if (!store || typeof store.subscribe !== 'function') {
+    throw new Error("'".concat(name, "' is not a store with a 'subscribe' method"));
+  }
+}
+
+function subscribe(store, callback) {
+  var unsub = store.subscribe(callback);
+  return unsub.unsubscribe ? function () {
+    return unsub.unsubscribe();
+  } : unsub;
+}
+
+function component_subscribe(component, store, callback) {
+  component.$$.on_destroy.push(subscribe(store, callback));
+}
+
 function create_slot(definition, ctx, $$scope, fn) {
   if (definition) {
     var slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
@@ -322,6 +339,12 @@ function get_slot_changes(definition, $$scope, dirty, fn) {
 
 function null_to_empty(value) {
   return value == null ? '' : value;
+}
+
+function set_store_value(store, ret) {
+  var value = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ret;
+  store.set(value);
+  return ret;
 }
 
 var is_client = typeof window !== 'undefined';
@@ -1341,4 +1364,4 @@ function (_SvelteComponent) {
   return SvelteComponentDev;
 }(SvelteComponent);
 
-export { prop_dev as $, claim_space as A, mount_component as B, transition_in as C, transition_out as D, destroy_component as E, group_outros as F, check_outros as G, destroy_each as H, create_slot as I, get_slot_context as J, get_slot_changes as K, globals as L, empty as M, query_selector_all as N, assign as O, get_spread_update as P, get_spread_object as Q, setContext as R, SvelteComponentDev as S, createEventDispatcher as T, toggle_class as U, listen_dev as V, bubble as W, onMount as X, select_value as Y, set_input_value as Z, _typeof as _, _inherits as a, add_render_callback as a0, select_option as a1, update_keyed_each as a2, destroy_block as a3, create_in_transition as a4, create_out_transition as a5, _classCallCheck as b, _possibleConstructorReturn as c, _getPrototypeOf as d, _assertThisInitialized as e, dispatch_dev as f, _createClass as g, element as h, init as i, claim_element as j, children as k, claim_text as l, detach_dev as m, noop as n, attr_dev as o, null_to_empty as p, add_location as q, insert_dev as r, safe_not_equal as s, text as t, append_dev as u, _slicedToArray as v, set_data_dev as w, create_component as x, space as y, claim_component as z };
+export { validate_store as $, claim_space as A, mount_component as B, transition_in as C, transition_out as D, destroy_component as E, group_outros as F, check_outros as G, destroy_each as H, create_slot as I, get_slot_context as J, get_slot_changes as K, globals as L, empty as M, query_selector_all as N, assign as O, get_spread_update as P, get_spread_object as Q, setContext as R, SvelteComponentDev as S, add_render_callback as T, create_in_transition as U, create_out_transition as V, createEventDispatcher as W, toggle_class as X, listen_dev as Y, bubble as Z, _typeof as _, _inherits as a, component_subscribe as a0, onMount as a1, set_store_value as a2, select_value as a3, set_input_value as a4, prop_dev as a5, select_option as a6, update_keyed_each as a7, destroy_block as a8, _classCallCheck as b, _possibleConstructorReturn as c, _getPrototypeOf as d, _assertThisInitialized as e, dispatch_dev as f, _createClass as g, element as h, init as i, claim_element as j, children as k, claim_text as l, detach_dev as m, noop as n, attr_dev as o, null_to_empty as p, add_location as q, insert_dev as r, safe_not_equal as s, text as t, append_dev as u, _slicedToArray as v, set_data_dev as w, create_component as x, space as y, claim_component as z };

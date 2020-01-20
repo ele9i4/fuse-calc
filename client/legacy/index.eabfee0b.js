@@ -1,6 +1,6 @@
-import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, i as init, s as safe_not_equal, e as _assertThisInitialized, f as dispatch_dev, g as _createClass, S as SvelteComponentDev, T as createEventDispatcher, h as element, j as claim_element, k as children, m as detach_dev, o as attr_dev, U as toggle_class, q as add_location, r as insert_dev, V as listen_dev, v as _slicedToArray, n as noop, H as destroy_each, t as text, l as claim_text, w as set_data_dev, y as space, x as create_component, A as claim_space, z as claim_component, u as append_dev, B as mount_component, C as transition_in, D as transition_out, E as destroy_component, W as bubble, F as group_outros, G as check_outros, L as globals, X as onMount, N as query_selector_all, Y as select_value, Z as set_input_value, $ as prop_dev, a0 as add_render_callback, a1 as select_option, a2 as update_keyed_each, a3 as destroy_block } from './index.4984c9bf.js';
-import { _ as _asyncToGenerator, a as _regeneratorRuntime } from './index.e63ff74e.js';
-import { A as AnimPage } from './AnimatePage.c0c40068.js';
+import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, i as init, s as safe_not_equal, e as _assertThisInitialized, f as dispatch_dev, g as _createClass, S as SvelteComponentDev, W as createEventDispatcher, h as element, j as claim_element, k as children, m as detach_dev, o as attr_dev, X as toggle_class, q as add_location, r as insert_dev, Y as listen_dev, v as _slicedToArray, n as noop, H as destroy_each, t as text, l as claim_text, w as set_data_dev, y as space, x as create_component, A as claim_space, z as claim_component, u as append_dev, B as mount_component, C as transition_in, D as transition_out, E as destroy_component, Z as bubble, F as group_outros, G as check_outros, L as globals, $ as validate_store, a0 as component_subscribe, a1 as onMount, a2 as set_store_value, N as query_selector_all, a3 as select_value, a4 as set_input_value, a5 as prop_dev, T as add_render_callback, a6 as select_option, a7 as update_keyed_each, a8 as destroy_block } from './index.61d040bf.js';
+import { w as writable, _ as _asyncToGenerator, a as _regeneratorRuntime } from './index.8f3adf2d.js';
+import { A as AnimPage } from './AnimatePage.b3c919f0.js';
 
 var file = "src/components/BitMask.svelte";
 
@@ -1489,13 +1489,16 @@ function (_SvelteComponentDev) {
   return FuseCalc;
 }(SvelteComponentDev);
 
+var fullData = writable([]);
+var ucListStore = writable([]);
+
 var file$4 = "src/routes/index.svelte";
 
 function get_each_context$3(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[11] = list[i];
   return child_ctx;
-} // (70:6) {:else}
+} // (67:6) {:else}
 
 
 function create_else_block$1(ctx) {
@@ -1515,7 +1518,7 @@ function create_else_block$1(ctx) {
       this.h();
     },
     h: function hydrate() {
-      add_location(p, file$4, 70, 8, 1622);
+      add_location(p, file$4, 67, 8, 1635);
     },
     m: function mount(target, anchor) {
       insert_dev(target, p, anchor);
@@ -1530,11 +1533,11 @@ function create_else_block$1(ctx) {
     block: block,
     id: create_else_block$1.name,
     type: "else",
-    source: "(70:6) {:else}",
+    source: "(67:6) {:else}",
     ctx: ctx
   });
   return block;
-} // (68:30) 
+} // (65:36) 
 
 
 function create_if_block_1(ctx) {
@@ -1554,7 +1557,7 @@ function create_if_block_1(ctx) {
       this.h();
     },
     h: function hydrate() {
-      add_location(p, file$4, 68, 8, 1576);
+      add_location(p, file$4, 65, 8, 1589);
     },
     m: function mount(target, anchor) {
       insert_dev(target, p, anchor);
@@ -1569,11 +1572,11 @@ function create_if_block_1(ctx) {
     block: block,
     id: create_if_block_1.name,
     type: "if",
-    source: "(68:30) ",
+    source: "(65:36) ",
     ctx: ctx
   });
   return block;
-} // (62:6) {#if filteredList.length}
+} // (59:6) {#if filteredList.length}
 
 
 function create_if_block$2(ctx) {
@@ -1583,7 +1586,7 @@ function create_if_block$2(ctx) {
   var dispose;
   var each_value =
   /*filteredList*/
-  ctx[4];
+  ctx[3];
 
   var get_key = function get_key(ctx) {
     return (
@@ -1622,13 +1625,13 @@ function create_if_block$2(ctx) {
     h: function hydrate() {
       if (
       /*selected*/
-      ctx[2] === void 0) add_render_callback(function () {
+      ctx[1] === void 0) add_render_callback(function () {
         return (
           /*select_change_handler*/
           ctx[10].call(select)
         );
       });
-      add_location(select, file$4, 62, 8, 1385);
+      add_location(select, file$4, 59, 8, 1392);
     },
     m: function mount(target, anchor) {
       insert_dev(target, select, anchor);
@@ -1639,7 +1642,7 @@ function create_if_block$2(ctx) {
 
       select_option(select,
       /*selected*/
-      ctx[2]);
+      ctx[1]);
       dispose = listen_dev(select, "change",
       /*select_change_handler*/
       ctx[10]);
@@ -1647,15 +1650,15 @@ function create_if_block$2(ctx) {
     p: function update(ctx, dirty) {
       var each_value =
       /*filteredList*/
-      ctx[4];
+      ctx[3];
       each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, select, destroy_block, create_each_block$3, null, get_each_context$3);
 
       if (dirty &
       /*selected*/
-      4) {
+      2) {
         select_option(select,
         /*selected*/
-        ctx[2]);
+        ctx[1]);
       }
     },
     d: function destroy(detaching) {
@@ -1672,11 +1675,11 @@ function create_if_block$2(ctx) {
     block: block,
     id: create_if_block$2.name,
     type: "if",
-    source: "(62:6) {#if filteredList.length}",
+    source: "(59:6) {#if filteredList.length}",
     ctx: ctx
   });
   return block;
-} // (64:10) {#each filteredList as uc (uc)}
+} // (61:10) {#each filteredList as uc (uc)}
 
 
 function create_each_block$3(key_1, ctx) {
@@ -1707,7 +1710,7 @@ function create_each_block$3(key_1, ctx) {
       attr_dev(option, "label", option_label_value =
       /*uc*/
       ctx[11]);
-      add_location(option, file$4, 64, 12, 1470);
+      add_location(option, file$4, 61, 12, 1477);
       this.first = option;
     },
     m: function mount(target, anchor) {
@@ -1716,7 +1719,7 @@ function create_each_block$3(key_1, ctx) {
     p: function update(ctx, dirty) {
       if (dirty &
       /*filteredList*/
-      16 && option_value_value !== (option_value_value =
+      8 && option_value_value !== (option_value_value =
       /*uc*/
       ctx[11])) {
         prop_dev(option, "__value", option_value_value);
@@ -1726,7 +1729,7 @@ function create_each_block$3(key_1, ctx) {
 
       if (dirty &
       /*filteredList*/
-      16 && option_label_value !== (option_label_value =
+      8 && option_label_value !== (option_label_value =
       /*uc*/
       ctx[11])) {
         attr_dev(option, "label", option_label_value);
@@ -1740,11 +1743,11 @@ function create_each_block$3(key_1, ctx) {
     block: block,
     id: create_each_block$3.name,
     type: "each",
-    source: "(64:10) {#each filteredList as uc (uc)}",
+    source: "(61:10) {#each filteredList as uc (uc)}",
     ctx: ctx
   });
   return block;
-} // (54:0) <AnimPage>
+} // (51:0) <AnimPage>
 
 
 function create_default_slot(ctx) {
@@ -1763,10 +1766,10 @@ function create_default_slot(ctx) {
   function select_block_type(ctx, dirty) {
     if (
     /*filteredList*/
-    ctx[4].length) return create_if_block$2;
+    ctx[3].length) return create_if_block$2;
     if (
-    /*ucList*/
-    ctx[0].length) return create_if_block_1;
+    /*$ucListStore*/
+    ctx[4].length) return create_if_block_1;
     return create_else_block$1;
   }
 
@@ -1776,7 +1779,7 @@ function create_default_slot(ctx) {
     props: {
       data:
       /*ucData*/
-      ctx[3]
+      ctx[2]
     },
     $$inline: true
   });
@@ -1823,13 +1826,13 @@ function create_default_slot(ctx) {
     },
     h: function hydrate() {
       attr_dev(input, "type", "text");
-      add_location(input, file$4, 58, 8, 1279);
-      add_location(label, file$4, 56, 6, 1247);
-      add_location(br, file$4, 60, 6, 1340);
+      add_location(input, file$4, 55, 8, 1286);
+      add_location(label, file$4, 53, 6, 1254);
+      add_location(br, file$4, 57, 6, 1347);
       attr_dev(div0, "class", "inputs svelte-1a946pc");
-      add_location(div0, file$4, 55, 4, 1220);
+      add_location(div0, file$4, 52, 4, 1227);
       attr_dev(div1, "class", "wrapper svelte-1a946pc");
-      add_location(div1, file$4, 54, 2, 1194);
+      add_location(div1, file$4, 51, 2, 1201);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div1, anchor);
@@ -1839,7 +1842,7 @@ function create_default_slot(ctx) {
       append_dev(label, input);
       set_input_value(input,
       /*filter*/
-      ctx[1]);
+      ctx[0]);
       append_dev(div0, t1);
       append_dev(div0, br);
       append_dev(div0, t2);
@@ -1854,12 +1857,12 @@ function create_default_slot(ctx) {
     p: function update(ctx, dirty) {
       if (dirty &
       /*filter*/
-      2 && input.value !==
+      1 && input.value !==
       /*filter*/
-      ctx[1]) {
+      ctx[0]) {
         set_input_value(input,
         /*filter*/
-        ctx[1]);
+        ctx[0]);
       }
 
       if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
@@ -1877,9 +1880,9 @@ function create_default_slot(ctx) {
       var fusecalc_changes = {};
       if (dirty &
       /*ucData*/
-      8) fusecalc_changes.data =
+      4) fusecalc_changes.data =
       /*ucData*/
-      ctx[3];
+      ctx[2];
       fusecalc.$set(fusecalc_changes);
     },
     i: function intro(local) {
@@ -1902,7 +1905,7 @@ function create_default_slot(ctx) {
     block: block,
     id: create_default_slot.name,
     type: "slot",
-    source: "(54:0) <AnimPage>",
+    source: "(51:0) <AnimPage>",
     ctx: ctx
   });
   return block;
@@ -1950,7 +1953,7 @@ function create_fragment$4(ctx) {
       var animpage_changes = {};
 
       if (dirty &
-      /*$$scope, ucData, filteredList, selected, ucList, filter*/
+      /*$$scope, ucData, filteredList, selected, $ucListStore, filter*/
       16415) {
         animpage_changes.$$scope = {
           dirty: dirty,
@@ -1992,26 +1995,23 @@ function _preload() {
   _preload = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime.mark(function _callee2() {
-    var data, ucList;
+    var ucList;
     return _regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return this.fetch("list.json");
+            return this.fetch("list.json").then(function (r) {
+              return r.json();
+            });
 
           case 2:
-            data = _context2.sent;
-            _context2.next = 5;
-            return data.json();
-
-          case 5:
             ucList = _context2.sent;
             return _context2.abrupt("return", {
               ucList: ucList
             });
 
-          case 7:
+          case 4:
           case "end":
             return _context2.stop();
         }
@@ -2022,69 +2022,66 @@ function _preload() {
 }
 
 function instance$4($$self, $$props, $$invalidate) {
+  var $ucListStore;
+  var $fullData;
+  validate_store(ucListStore, "ucListStore");
+  component_subscribe($$self, ucListStore, function ($$value) {
+    return $$invalidate(4, $ucListStore = $$value);
+  });
+  validate_store(fullData, "fullData");
+  component_subscribe($$self, fullData, function ($$value) {
+    return $$invalidate(6, $fullData = $$value);
+  });
   var _$$props$ucList = $$props.ucList,
       ucList = _$$props$ucList === void 0 ? [] : _$$props$ucList;
   var filter = "";
-  var selected = ucList[0];
+  var selected = $ucListStore[0];
   var ucData = {};
-  var fullData = [];
   var filteredList = [];
-  onMount(function () {
-    loadData();
-  });
+  onMount(
+  /*#__PURE__*/
+  _asyncToGenerator(
+  /*#__PURE__*/
+  _regeneratorRuntime.mark(function _callee() {
+    return _regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.t0 = set_store_value;
+            _context.t1 = fullData;
+            _context.next = 4;
+            return fetch("data.json").then(function (r) {
+              return r.json();
+            });
 
-  function loadData() {
-    return _loadData.apply(this, arguments);
-  }
+          case 4:
+            _context.t2 = $fullData = _context.sent;
+            (0, _context.t0)(_context.t1, _context.t2);
 
-  function _loadData() {
-    _loadData = _asyncToGenerator(
-    /*#__PURE__*/
-    _regeneratorRuntime.mark(function _callee() {
-      var data;
-      return _regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return fetch("data.json");
-
-            case 2:
-              data = _context.sent;
-              _context.t0 = $$invalidate;
-              _context.next = 6;
-              return data.json();
-
-            case 6:
-              _context.t1 = fullData = _context.sent;
-              (0, _context.t0)(5, _context.t1);
-
-            case 8:
-            case "end":
-              return _context.stop();
-          }
+          case 6:
+          case "end":
+            return _context.stop();
         }
-      }, _callee);
-    }));
-    return _loadData.apply(this, arguments);
-  }
+      }
+    }, _callee);
+  })));
 
   function filterList() {
-    $$invalidate(4, filteredList = ucList.filter(function (uc) {
+    $$invalidate(3, filteredList = $ucListStore.filter(function (uc) {
       return filter.split(" ").every(function (filterEl) {
         return uc.includes(filterEl);
       });
     }));
 
     if (!filteredList.includes(selected)) {
-      $$invalidate(2, selected = filteredList[0]);
+      $$invalidate(1, selected = filteredList[0]);
       changeUc();
     }
   }
 
   function changeUc() {
-    $$invalidate(3, ucData = fullData.find(function (_ref3) {
-      var name = _ref3.name;
+    $$invalidate(2, ucData = $fullData.find(function (_ref4) {
+      var name = _ref4.name;
       return name === selected;
     }));
   }
@@ -2096,17 +2093,17 @@ function instance$4($$self, $$props, $$invalidate) {
 
   function input_input_handler() {
     filter = this.value;
-    $$invalidate(1, filter);
+    $$invalidate(0, filter);
   }
 
   function select_change_handler() {
     selected = select_value(this);
-    $$invalidate(2, selected);
-    $$invalidate(4, filteredList);
+    $$invalidate(1, selected);
+    $$invalidate(3, filteredList);
   }
 
   $$self.$set = function ($$props) {
-    if ("ucList" in $$props) $$invalidate(0, ucList = $$props.ucList);
+    if ("ucList" in $$props) $$invalidate(5, ucList = $$props.ucList);
   };
 
   $$self.$capture_state = function () {
@@ -2115,35 +2112,43 @@ function instance$4($$self, $$props, $$invalidate) {
       filter: filter,
       selected: selected,
       ucData: ucData,
-      fullData: fullData,
-      filteredList: filteredList
+      filteredList: filteredList,
+      $ucListStore: $ucListStore,
+      $fullData: $fullData
     };
   };
 
   $$self.$inject_state = function ($$props) {
-    if ("ucList" in $$props) $$invalidate(0, ucList = $$props.ucList);
-    if ("filter" in $$props) $$invalidate(1, filter = $$props.filter);
-    if ("selected" in $$props) $$invalidate(2, selected = $$props.selected);
-    if ("ucData" in $$props) $$invalidate(3, ucData = $$props.ucData);
-    if ("fullData" in $$props) $$invalidate(5, fullData = $$props.fullData);
-    if ("filteredList" in $$props) $$invalidate(4, filteredList = $$props.filteredList);
+    if ("ucList" in $$props) $$invalidate(5, ucList = $$props.ucList);
+    if ("filter" in $$props) $$invalidate(0, filter = $$props.filter);
+    if ("selected" in $$props) $$invalidate(1, selected = $$props.selected);
+    if ("ucData" in $$props) $$invalidate(2, ucData = $$props.ucData);
+    if ("filteredList" in $$props) $$invalidate(3, filteredList = $$props.filteredList);
+    if ("$ucListStore" in $$props) ucListStore.set($ucListStore = $$props.$ucListStore);
+    if ("$fullData" in $$props) fullData.set($fullData = $$props.$fullData);
   };
 
   $$self.$$.update = function () {
     if ($$self.$$.dirty &
-    /*selected, fullData*/
-    36) {
+    /*ucList*/
+    32) {
+       set_store_value(ucListStore, $ucListStore = ucList);
+    }
+
+    if ($$self.$$.dirty &
+    /*selected, $fullData*/
+    66) {
        changeUc();
     }
 
     if ($$self.$$.dirty &
-    /*ucList, filter*/
-    3) {
+    /*$ucListStore, filter*/
+    17) {
        filterList();
     }
   };
 
-  return [ucList, filter, selected, ucData, filteredList, fullData, loadData, filterList, changeUc, input_input_handler, select_change_handler];
+  return [filter, selected, ucData, filteredList, $ucListStore, ucList, $fullData, filterList, changeUc, input_input_handler, select_change_handler];
 }
 
 var Routes =
@@ -2158,7 +2163,7 @@ function (_SvelteComponentDev) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Routes).call(this, options));
     init(_assertThisInitialized(_this), options, instance$4, create_fragment$4, safe_not_equal, {
-      ucList: 0
+      ucList: 5
     });
     dispatch_dev("SvelteRegisterComponent", {
       component: _assertThisInitialized(_this),

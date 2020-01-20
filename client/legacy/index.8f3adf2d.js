@@ -1,4 +1,4 @@
-import { _ as _typeof } from './index.4984c9bf.js';
+import { _ as _typeof, s as safe_not_equal, n as noop } from './index.61d040bf.js';
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -749,4 +749,77 @@ function _asyncToGenerator(fn) {
   };
 }
 
-export { _asyncToGenerator as _, regenerator as a };
+var subscriber_queue = [];
+/**
+ * Create a `Writable` store that allows both updating and reading by subscription.
+ * @param {*=}value initial value
+ * @param {StartStopNotifier=}start start and stop notifications for subscriptions
+ */
+
+
+function writable(value) {
+  var start = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : noop;
+  var stop;
+  var subscribers = [];
+
+  function set(new_value) {
+    if (safe_not_equal(value, new_value)) {
+      value = new_value;
+
+      if (stop) {
+        // store is ready
+        var run_queue = !subscriber_queue.length;
+
+        for (var i = 0; i < subscribers.length; i += 1) {
+          var s = subscribers[i];
+          s[1]();
+          subscriber_queue.push(s, value);
+        }
+
+        if (run_queue) {
+          for (var _i = 0; _i < subscriber_queue.length; _i += 2) {
+            subscriber_queue[_i][0](subscriber_queue[_i + 1]);
+          }
+
+          subscriber_queue.length = 0;
+        }
+      }
+    }
+  }
+
+  function update(fn) {
+    set(fn(value));
+  }
+
+  function subscribe(run) {
+    var invalidate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : noop;
+    var subscriber = [run, invalidate];
+    subscribers.push(subscriber);
+
+    if (subscribers.length === 1) {
+      stop = start(set) || noop;
+    }
+
+    run(value);
+    return function () {
+      var index = subscribers.indexOf(subscriber);
+
+      if (index !== -1) {
+        subscribers.splice(index, 1);
+      }
+
+      if (subscribers.length === 0) {
+        stop();
+        stop = null;
+      }
+    };
+  }
+
+  return {
+    set: set,
+    update: update,
+    subscribe: subscribe
+  };
+}
+
+export { _asyncToGenerator as _, regenerator as a, writable as w };

@@ -4,35 +4,32 @@
 
 <script context="module">
   export async function preload() {
-    const data = await this.fetch('list.json');
-    const ucList = await data.json();
+    const ucList = await this.fetch('list.json').then(r => r.json());
     return { ucList };
   }
 </script>
 <script>
   import { onMount } from 'svelte';
-  import { Button, Checkbox } from 'fulmo/cmp';
   import AnimPage from 'components/AnimatePage.svelte';
+  import { Button, Checkbox } from 'fulmo/cmp';
   import FuseCalc from 'components/FuseCalc.svelte';
+  import { fullData, ucListStore } from 'store/store';
 
   export let ucList = [];
+
+
+  $: $ucListStore = ucList;
   let filter = '';
-  let selected = ucList[0];
+  let selected = $ucListStore[0];
   let ucData = {};
-  let fullData = [];
   let filteredList = [];
 
-  onMount (() => {
-    loadData();
+  onMount (async () => {
+    $fullData = await fetch('data.json').then(r => r.json());
   });
 
-  async function loadData () {
-    const data = await fetch('data.json');
-    fullData = await data.json();
-  }
-
   function filterList () {
-    filteredList = ucList
+    filteredList = $ucListStore
       .filter ((uc) => filter
         .split (' ')
         .every ((filterEl) => uc.includes (filterEl))
@@ -44,11 +41,11 @@
   }
 
   function changeUc () {
-    ucData = fullData.find (({ name }) => name === selected);
+    ucData = $fullData.find (({ name }) => name === selected);
   }
 
-  $: changeUc (selected, fullData);
-  $: filterList (ucList, filter);
+  $: changeUc (selected, $fullData);
+  $: filterList ($ucListStore, filter);
 </script>
 
 <AnimPage>
@@ -65,7 +62,7 @@
             <option value={uc} label={uc}>
           {/each}
         </select>
-      {:else if ucList.length}
+      {:else if $ucListStore.length}
         <p>No find elements</p>
       {:else}
         <p>Loading...</p>

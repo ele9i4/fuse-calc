@@ -1543,9 +1543,9 @@ function (_SvelteComponentDev) {
 var ignore = [];
 var components = [{
   js: function js() {
-    return import('./index.31d610b6.js');
+    return import('./index.ad1e6e0c.js');
   },
-  css: ["legacy/index.31d610b6.css","legacy/AnimatePage.c0c40068.css"]
+  css: ["legacy/index.ad1e6e0c.css","legacy/AnimatePage.c0c40068.css"]
 }, {
   js: function js() {
     return import('./about.f4c96740.js');

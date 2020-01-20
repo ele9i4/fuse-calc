@@ -1,4 +1,4 @@
-import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, i as init, s as safe_not_equal, e as _assertThisInitialized, f as dispatch_dev, g as _createClass, S as SvelteComponentDev, T as createEventDispatcher, h as element, j as claim_element, k as children, m as detach_dev, o as attr_dev, U as toggle_class, q as add_location, r as insert_dev, V as listen_dev, v as _slicedToArray, n as noop, H as destroy_each, L as globals, t as text, l as claim_text, w as set_data_dev, y as space, x as create_component, A as claim_space, z as claim_component, u as append_dev, B as mount_component, C as transition_in, D as transition_out, E as destroy_component, W as bubble, F as group_outros, G as check_outros, X as onMount, N as query_selector_all, Y as select_value, Z as set_input_value, $ as prop_dev, a0 as add_render_callback, a1 as select_option, a2 as update_keyed_each, a3 as destroy_block } from './index.4984c9bf.js';
+import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, i as init, s as safe_not_equal, e as _assertThisInitialized, f as dispatch_dev, g as _createClass, S as SvelteComponentDev, T as createEventDispatcher, h as element, j as claim_element, k as children, m as detach_dev, o as attr_dev, U as toggle_class, q as add_location, r as insert_dev, V as listen_dev, v as _slicedToArray, n as noop, H as destroy_each, t as text, l as claim_text, w as set_data_dev, y as space, x as create_component, A as claim_space, z as claim_component, u as append_dev, B as mount_component, C as transition_in, D as transition_out, E as destroy_component, W as bubble, F as group_outros, G as check_outros, L as globals, X as onMount, N as query_selector_all, Y as select_value, Z as set_input_value, $ as prop_dev, a0 as add_render_callback, a1 as select_option, a2 as update_keyed_each, a3 as destroy_block } from './index.4984c9bf.js';
 import { _ as _asyncToGenerator, a as _regeneratorRuntime } from './index.e63ff74e.js';
 import { A as AnimPage } from './AnimatePage.c0c40068.js';
 
@@ -337,8 +337,7 @@ function (_SvelteComponentDev) {
   return BitMask;
 }(SvelteComponentDev);
 
-var console_1 = globals.console;
-var file$1 = "src/components/BitField.svelte"; // (22:2) {#if bitField.valueLabel}
+var file$1 = "src/components/BitField.svelte"; // (21:2) {#if bitField.valueLabel}
 
 function create_if_block(ctx) {
   var t_value =
@@ -374,7 +373,7 @@ function create_if_block(ctx) {
     block: block,
     id: create_if_block.name,
     type: "if",
-    source: "(22:2) {#if bitField.valueLabel}",
+    source: "(21:2) {#if bitField.valueLabel}",
     ctx: ctx
   });
   return block;
@@ -434,8 +433,8 @@ function create_fragment$1(ctx) {
       this.h();
     },
     h: function hydrate() {
-      add_location(p, file$1, 19, 2, 400);
-      add_location(div, file$1, 18, 0, 392);
+      add_location(p, file$1, 18, 2, 360);
+      add_location(div, file$1, 17, 0, 352);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -523,7 +522,7 @@ function instance$1($$self, $$props, $$invalidate) {
 
   var writable_props = ["bitField", "fuseMask"];
   Object.keys($$props).forEach(function (key) {
-    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn("<BitField> was created with unknown prop '".concat(key, "'"));
+    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<BitField> was created with unknown prop '".concat(key, "'"));
   });
 
   function update_handler(event) {
@@ -580,12 +579,6 @@ function instance$1($$self, $$props, $$invalidate) {
     2) {
        $$invalidate(3, shift = findShift());
     }
-
-    if ($$self.$$.dirty &
-    /*bitField*/
-    1) {
-       console.log(bitField.valuesArray);
-    }
   };
 
   return [bitField, fillMask, mask, shift, fuseMask, findShift, update_handler, func];
@@ -618,13 +611,13 @@ function (_SvelteComponentDev) {
     if (
     /*bitField*/
     ctx[0] === undefined && !("bitField" in props)) {
-      console_1.warn("<BitField> was created without expected prop 'bitField'");
+      console.warn("<BitField> was created without expected prop 'bitField'");
     }
 
     if (
     /*fuseMask*/
     ctx[4] === undefined && !("fuseMask" in props)) {
-      console_1.warn("<BitField> was created without expected prop 'fuseMask'");
+      console.warn("<BitField> was created without expected prop 'fuseMask'");
     }
 
     return _this;
@@ -1024,7 +1017,7 @@ function (_SvelteComponentDev) {
 }(SvelteComponentDev);
 
 var Object_1 = globals.Object,
-    console_1$1 = globals.console;
+    console_1 = globals.console;
 var file$3 = "src/components/FuseCalc.svelte";
 
 function get_each_context$2(ctx, list, i) {
@@ -1051,7 +1044,7 @@ function create_else_block(ctx) {
       this.h();
     },
     h: function hydrate() {
-      add_location(p, file$3, 32, 4, 717);
+      add_location(p, file$3, 32, 4, 733);
     },
     m: function mount(target, anchor) {
       insert_dev(target, p, anchor);
@@ -1072,7 +1065,7 @@ function create_else_block(ctx) {
     ctx: ctx
   });
   return block;
-} // (23:2) {#if data.name}
+} // (23:2) {#if data && data.name}
 
 
 function create_if_block$1(ctx) {
@@ -1156,11 +1149,11 @@ function create_if_block$1(ctx) {
     },
     h: function hydrate() {
       attr_dev(div0, "class", "name");
-      add_location(div0, file$3, 23, 4, 453);
+      add_location(div0, file$3, 23, 4, 469);
       attr_dev(div1, "class", "command");
-      add_location(div1, file$3, 24, 4, 506);
+      add_location(div1, file$3, 24, 4, 522);
       attr_dev(div2, "class", "fuses svelte-uz66cd");
-      add_location(div2, file$3, 26, 4, 567);
+      add_location(div2, file$3, 26, 4, 583);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div0, anchor);
@@ -1258,7 +1251,7 @@ function create_if_block$1(ctx) {
     block: block,
     id: create_if_block$1.name,
     type: "if",
-    source: "(23:2) {#if data.name}",
+    source: "(23:2) {#if data && data.name}",
     ctx: ctx
   });
   return block;
@@ -1330,6 +1323,8 @@ function create_fragment$3(ctx) {
   function select_block_type(ctx, dirty) {
     if (
     /*data*/
+    ctx[0] &&
+    /*data*/
     ctx[0].name) return 0;
     return 1;
   }
@@ -1353,7 +1348,7 @@ function create_fragment$3(ctx) {
     },
     h: function hydrate() {
       attr_dev(div, "class", "wrapper svelte-uz66cd");
-      add_location(div, file$3, 21, 0, 409);
+      add_location(div, file$3, 21, 0, 417);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -1420,7 +1415,7 @@ function instance$3($$self, $$props, $$invalidate) {
   var fuseObj = [];
 
   function getFuseNames() {
-    return data.fuses ? data.fuses.reduce(function (res, fuse) {
+    return data && data.fuses ? data.fuses.reduce(function (res, fuse) {
       res[fuse.name] = fuse.initval;
       return res;
     }, {}) : {};
@@ -1428,7 +1423,7 @@ function instance$3($$self, $$props, $$invalidate) {
 
   var writable_props = ["data"];
   Object_1.keys($$props).forEach(function (key) {
-    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn("<FuseCalc> was created with unknown prop '".concat(key, "'"));
+    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn("<FuseCalc> was created with unknown prop '".concat(key, "'"));
   });
 
   $$self.$set = function ($$props) {

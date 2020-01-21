@@ -1,6 +1,9 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import BitField from './BitField.svelte';
   import BitMask from './BitMask.svelte';
+  const dispatch = createEventDispatcher();
+
   export let fuse = {};
 
   $: mask = parseInt(fuse.initval, 16);
@@ -8,10 +11,12 @@
   function handleBitFieldUpdate (event, maskStr) {
     const bitFieldMask = parseInt(maskStr, 16);
     mask = (mask & (~ bitFieldMask)) | event.detail.mask;
+    dispatch ('update', { mask });
   }
 
   function handleBitMaskUpdate (event) {
     mask = event.detail.mask;
+    dispatch ('update', { mask });
   }
 
 </script>

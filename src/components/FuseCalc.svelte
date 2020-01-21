@@ -2,31 +2,56 @@
   import SingleFuse from './SingleFuse.svelte';
   export let data = {}
   let fuseObj = [];
+  let command = '';
+  let messageShow = false;
+  let message = "Command copied to clipboard";
 
   function getFuseNames () {
     return (data && data.fuses)
       ? data.fuses.reduce ((res, fuse) => {
-        res[fuse.name] = fuse.initval;
+        res[fuse.name] = parseInt (fuse.initval, 16);
         return res
       }, {})
       : {};
   }
 
-  $: fuseObj = getFuseNames ( data );
+  function singleDudeFuse (fuseName) {
+    const shortFuseName = fuseName[0].toLowerCase() + 'fuse'
+    const fuseValue = '0x' + fuseObj[fuseName].toString(16).padStart(2, '0');
+    return `-U ${shortFuseName}:w:${fuseValue}:m`;
+  }
 
-  function handleUpdateFuse (event) {
-    console.log(event.details)
+  $: fuseObj = getFuseNames ( data );
+  $: command = `avrdude.exe ${Object.keys( fuseObj ).map (singleDudeFuse).join (' ')}`;
+
+  function handleUpdateFuse (event, fuse) {
+    fuseObj[fuse.name] = event.detail.mask;
+  }
+
+  function handleCopy () {
+    navigator.clipboard.writeText (command);
+    messageShow = true;
+    setTimeout (() => {
+      messageShow = false;
+    }, 600)
   }
 </script>
 
 <div class="wrapper">
   {#if data && data.name}
     <div class="name">Selected uc: {data.name}</div>
-    <div class="command">List: {Object.keys(fuseObj)}</div>
+    <div class="command">Command:
+      <pre class="command-line" on:click={handleCopy}>
+        {command}
+      </pre>
+    </div>
+    <div class="message" class:message-show={messageShow}>
+      {message}
+    </div>
 
     <div class="fuses">
       {#each data.fuses as fuse}
-        <SingleFuse {fuse} on:update={handleUpdateFuse}/>
+        <SingleFuse {fuse} on:update={(e) => handleUpdateFuse (e, fuse)}/>
       {/each}
     </div>
   {:else}
@@ -41,5 +66,19 @@
   }
   .fuses {
     display: flex;
+  }
+
+  .command-line {
+    padding: 4px 8px;
+    background: lightgray;
+    cursor: pointer;
+  }
+
+  .message {
+    opacity: 0;
+    transition: 0.3s
+  }
+  .message-show {
+    opacity: 1;
   }
 </style>

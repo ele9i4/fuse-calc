@@ -448,12 +448,19 @@ function claim_element(nodes, name, attributes, svg) {
     var node = nodes[i];
 
     if (node.nodeName === name) {
-      for (var j = 0; j < node.attributes.length; j += 1) {
+      var j = 0;
+
+      while (j < node.attributes.length) {
         var attribute = node.attributes[j];
-        if (!attributes[attribute.name]) node.removeAttribute(attribute.name);
+
+        if (attributes[attribute.name]) {
+          j++;
+        } else {
+          node.removeAttribute(attribute.name);
+        }
       }
 
-      return nodes.splice(i, 1)[0]; // TODO strip unwanted attributes
+      return nodes.splice(i, 1)[0];
     }
   }
 
@@ -1254,7 +1261,7 @@ function () {
 
 function dispatch_dev(type, detail) {
   document.dispatchEvent(custom_event(type, Object.assign({
-    version: '3.17.1'
+    version: '3.17.2'
   }, detail)));
 }
 

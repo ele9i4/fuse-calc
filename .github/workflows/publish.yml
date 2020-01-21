@@ -8,6 +8,7 @@ on:
       - 'src/*/*'
       - 'src/*/*/*'
       - 'src/*/*/*/*'
+      - 'static/*'
 
 jobs:
   docs-build-deploy:

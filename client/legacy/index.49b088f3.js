@@ -648,9 +648,9 @@ var file$2 = "src/components/SingleFuse.svelte";
 
 function get_each_context$1(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[5] = list[i];
+  child_ctx[6] = list[i];
   return child_ctx;
-} // (22:2) {#each fuse.bitFields as bitField}
+} // (27:2) {#each fuse.bitFields as bitField}
 
 
 function create_each_block$1(ctx) {
@@ -665,9 +665,9 @@ function create_each_block$1(ctx) {
 
     return (
       /*update_handler*/
-      (_ctx = ctx)[4].apply(_ctx, [
+      (_ctx = ctx)[5].apply(_ctx, [
       /*bitField*/
-      ctx[5]].concat(args))
+      ctx[6]].concat(args))
     );
   }
 
@@ -675,7 +675,7 @@ function create_each_block$1(ctx) {
     props: {
       bitField:
       /*bitField*/
-      ctx[5],
+      ctx[6],
       fuseMask:
       /*mask*/
       ctx[1]
@@ -701,7 +701,7 @@ function create_each_block$1(ctx) {
       /*fuse*/
       1) bitfield_changes.bitField =
       /*bitField*/
-      ctx[5];
+      ctx[6];
       if (dirty &
       /*mask*/
       2) bitfield_changes.fuseMask =
@@ -726,7 +726,7 @@ function create_each_block$1(ctx) {
     block: block,
     id: create_each_block$1.name,
     type: "each",
-    source: "(22:2) {#each fuse.bitFields as bitField}",
+    source: "(27:2) {#each fuse.bitFields as bitField}",
     ctx: ctx
   });
   return block;
@@ -815,9 +815,9 @@ function create_fragment$2(ctx) {
       this.h();
     },
     h: function hydrate() {
-      add_location(p, file$2, 19, 2, 438);
+      add_location(p, file$2, 24, 2, 603);
       attr_dev(div, "class", "single-fuse svelte-10jhp0m");
-      add_location(div, file$2, 18, 0, 410);
+      add_location(div, file$2, 23, 0, 575);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -930,16 +930,23 @@ function create_fragment$2(ctx) {
 }
 
 function instance$2($$self, $$props, $$invalidate) {
+  var dispatch = createEventDispatcher();
   var _$$props$fuse = $$props.fuse,
       fuse = _$$props$fuse === void 0 ? {} : _$$props$fuse;
 
   function handleBitFieldUpdate(event, maskStr) {
     var bitFieldMask = parseInt(maskStr, 16);
     $$invalidate(1, mask = mask & ~bitFieldMask | event.detail.mask);
+    dispatch("update", {
+      mask: mask
+    });
   }
 
   function handleBitMaskUpdate(event) {
     $$invalidate(1, mask = event.detail.mask);
+    dispatch("update", {
+      mask: mask
+    });
   }
 
   var writable_props = ["fuse"];
@@ -977,7 +984,7 @@ function instance$2($$self, $$props, $$invalidate) {
     }
   };
 
-  return [fuse, mask, handleBitFieldUpdate, handleBitMaskUpdate, update_handler];
+  return [fuse, mask, handleBitFieldUpdate, handleBitMaskUpdate, dispatch, update_handler];
 }
 
 var SingleFuse =
@@ -1016,15 +1023,14 @@ function (_SvelteComponentDev) {
   return SingleFuse;
 }(SvelteComponentDev);
 
-var Object_1 = globals.Object,
-    console_1 = globals.console;
+var Object_1 = globals.Object;
 var file$3 = "src/components/FuseCalc.svelte";
 
 function get_each_context$2(ctx, list, i) {
   var child_ctx = ctx.slice();
-  child_ctx[3] = list[i];
+  child_ctx[10] = list[i];
   return child_ctx;
-} // (32:2) {:else}
+} // (57:2) {:else}
 
 
 function create_else_block(ctx) {
@@ -1044,7 +1050,7 @@ function create_else_block(ctx) {
       this.h();
     },
     h: function hydrate() {
-      add_location(p, file$3, 32, 4, 733);
+      add_location(p, file$3, 57, 4, 1521);
     },
     m: function mount(target, anchor) {
       insert_dev(target, p, anchor);
@@ -1061,11 +1067,11 @@ function create_else_block(ctx) {
     block: block,
     id: create_else_block.name,
     type: "else",
-    source: "(32:2) {:else}",
+    source: "(57:2) {:else}",
     ctx: ctx
   });
   return block;
-} // (23:2) {#if data && data.name}
+} // (41:2) {#if data && data.name}
 
 
 function create_if_block$1(ctx) {
@@ -1078,13 +1084,15 @@ function create_if_block$1(ctx) {
   var t2;
   var div1;
   var t3;
-  var t4_value = Object.keys(
-  /*fuseObj*/
-  ctx[1]) + "";
+  var pre;
   var t4;
   var t5;
   var div2;
+  var t6;
+  var t7;
+  var div3;
   var current;
+  var dispose;
   var each_value =
   /*data*/
   ctx[0].fuses;
@@ -1107,10 +1115,18 @@ function create_if_block$1(ctx) {
       t1 = text(t1_value);
       t2 = space();
       div1 = element("div");
-      t3 = text("List: ");
-      t4 = text(t4_value);
+      t3 = text("Command:\n      ");
+      pre = element("pre");
+      t4 = text(
+      /*command*/
+      ctx[1]);
       t5 = space();
       div2 = element("div");
+      t6 = text(
+      /*message*/
+      ctx[3]);
+      t7 = space();
+      div3 = element("div");
 
       for (var _i = 0; _i < each_blocks.length; _i += 1) {
         each_blocks[_i].c();
@@ -1131,29 +1147,52 @@ function create_if_block$1(ctx) {
         class: true
       });
       var div1_nodes = children(div1);
-      t3 = claim_text(div1_nodes, "List: ");
-      t4 = claim_text(div1_nodes, t4_value);
+      t3 = claim_text(div1_nodes, "Command:\n      ");
+      pre = claim_element(div1_nodes, "PRE", {
+        class: true
+      });
+      var pre_nodes = children(pre);
+      t4 = claim_text(pre_nodes,
+      /*command*/
+      ctx[1]);
+      pre_nodes.forEach(detach_dev);
       div1_nodes.forEach(detach_dev);
       t5 = claim_space(nodes);
       div2 = claim_element(nodes, "DIV", {
         class: true
       });
       var div2_nodes = children(div2);
+      t6 = claim_text(div2_nodes,
+      /*message*/
+      ctx[3]);
+      div2_nodes.forEach(detach_dev);
+      t7 = claim_space(nodes);
+      div3 = claim_element(nodes, "DIV", {
+        class: true
+      });
+      var div3_nodes = children(div3);
 
       for (var _i2 = 0; _i2 < each_blocks.length; _i2 += 1) {
-        each_blocks[_i2].l(div2_nodes);
+        each_blocks[_i2].l(div3_nodes);
       }
 
-      div2_nodes.forEach(detach_dev);
+      div3_nodes.forEach(detach_dev);
       this.h();
     },
     h: function hydrate() {
       attr_dev(div0, "class", "name");
-      add_location(div0, file$3, 23, 4, 469);
+      add_location(div0, file$3, 41, 4, 1083);
+      attr_dev(pre, "class", "command-line svelte-1g0iirp");
+      add_location(pre, file$3, 43, 6, 1172);
       attr_dev(div1, "class", "command");
-      add_location(div1, file$3, 24, 4, 522);
-      attr_dev(div2, "class", "fuses svelte-uz66cd");
-      add_location(div2, file$3, 26, 4, 583);
+      add_location(div1, file$3, 42, 4, 1136);
+      attr_dev(div2, "class", "message svelte-1g0iirp");
+      toggle_class(div2, "message-show",
+      /*messageShow*/
+      ctx[2]);
+      add_location(div2, file$3, 47, 4, 1267);
+      attr_dev(div3, "class", "fuses svelte-1g0iirp");
+      add_location(div3, file$3, 51, 4, 1354);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div0, anchor);
@@ -1162,15 +1201,22 @@ function create_if_block$1(ctx) {
       insert_dev(target, t2, anchor);
       insert_dev(target, div1, anchor);
       append_dev(div1, t3);
-      append_dev(div1, t4);
+      append_dev(div1, pre);
+      append_dev(pre, t4);
       insert_dev(target, t5, anchor);
       insert_dev(target, div2, anchor);
+      append_dev(div2, t6);
+      insert_dev(target, t7, anchor);
+      insert_dev(target, div3, anchor);
 
       for (var _i3 = 0; _i3 < each_blocks.length; _i3 += 1) {
-        each_blocks[_i3].m(div2, null);
+        each_blocks[_i3].m(div3, null);
       }
 
       current = true;
+      dispose = listen_dev(pre, "click",
+      /*handleCopy*/
+      ctx[5], false, false, false);
     },
     p: function update(ctx, dirty) {
       if ((!current || dirty &
@@ -1178,15 +1224,23 @@ function create_if_block$1(ctx) {
       1) && t1_value !== (t1_value =
       /*data*/
       ctx[0].name + "")) set_data_dev(t1, t1_value);
-      if ((!current || dirty &
-      /*fuseObj*/
-      2) && t4_value !== (t4_value = Object.keys(
-      /*fuseObj*/
-      ctx[1]) + "")) set_data_dev(t4, t4_value);
+      if (!current || dirty &
+      /*command*/
+      2) set_data_dev(t4,
+      /*command*/
+      ctx[1]);
+
+      if (dirty &
+      /*messageShow*/
+      4) {
+        toggle_class(div2, "message-show",
+        /*messageShow*/
+        ctx[2]);
+      }
 
       if (dirty &
       /*data, handleUpdateFuse*/
-      1) {
+      17) {
         each_value =
         /*data*/
         ctx[0].fuses;
@@ -1207,7 +1261,7 @@ function create_if_block$1(ctx) {
 
             transition_in(each_blocks[_i4], 1);
 
-            each_blocks[_i4].m(div2, null);
+            each_blocks[_i4].m(div3, null);
           }
         }
 
@@ -1244,31 +1298,50 @@ function create_if_block$1(ctx) {
       if (detaching) detach_dev(div1);
       if (detaching) detach_dev(t5);
       if (detaching) detach_dev(div2);
+      if (detaching) detach_dev(t7);
+      if (detaching) detach_dev(div3);
       destroy_each(each_blocks, detaching);
+      dispose();
     }
   };
   dispatch_dev("SvelteRegisterBlock", {
     block: block,
     id: create_if_block$1.name,
     type: "if",
-    source: "(23:2) {#if data && data.name}",
+    source: "(41:2) {#if data && data.name}",
     ctx: ctx
   });
   return block;
-} // (28:6) {#each data.fuses as fuse}
+} // (53:6) {#each data.fuses as fuse}
 
 
 function create_each_block$2(ctx) {
   var current;
+
+  function update_handler() {
+    var _ctx;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return (
+      /*update_handler*/
+      (_ctx = ctx)[9].apply(_ctx, [
+      /*fuse*/
+      ctx[10]].concat(args))
+    );
+  }
+
   var singlefuse = new SingleFuse({
     props: {
       fuse:
       /*fuse*/
-      ctx[3]
+      ctx[10]
     },
     $$inline: true
   });
-  singlefuse.$on("update", handleUpdateFuse);
+  singlefuse.$on("update", update_handler);
   var block = {
     c: function create() {
       create_component(singlefuse.$$.fragment);
@@ -1280,13 +1353,14 @@ function create_each_block$2(ctx) {
       mount_component(singlefuse, target, anchor);
       current = true;
     },
-    p: function update(ctx, dirty) {
+    p: function update(new_ctx, dirty) {
+      ctx = new_ctx;
       var singlefuse_changes = {};
       if (dirty &
       /*data*/
       1) singlefuse_changes.fuse =
       /*fuse*/
-      ctx[3];
+      ctx[10];
       singlefuse.$set(singlefuse_changes);
     },
     i: function intro(local) {
@@ -1306,7 +1380,7 @@ function create_each_block$2(ctx) {
     block: block,
     id: create_each_block$2.name,
     type: "each",
-    source: "(28:6) {#each data.fuses as fuse}",
+    source: "(53:6) {#each data.fuses as fuse}",
     ctx: ctx
   });
   return block;
@@ -1347,8 +1421,8 @@ function create_fragment$3(ctx) {
       this.h();
     },
     h: function hydrate() {
-      attr_dev(div, "class", "wrapper svelte-uz66cd");
-      add_location(div, file$3, 21, 0, 417);
+      attr_dev(div, "class", "wrapper svelte-1g0iirp");
+      add_location(div, file$3, 39, 0, 1031);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div, anchor);
@@ -1405,26 +1479,47 @@ function create_fragment$3(ctx) {
   return block;
 }
 
-function handleUpdateFuse(event) {
-  console.log(event.details);
-}
-
 function instance$3($$self, $$props, $$invalidate) {
   var _$$props$data = $$props.data,
       data = _$$props$data === void 0 ? {} : _$$props$data;
   var fuseObj = [];
+  var command = "";
+  var messageShow = false;
+  var message = "Command copied to clipboard";
 
   function getFuseNames() {
     return data && data.fuses ? data.fuses.reduce(function (res, fuse) {
-      res[fuse.name] = fuse.initval;
+      res[fuse.name] = parseInt(fuse.initval, 16);
       return res;
     }, {}) : {};
   }
 
+  function singleDudeFuse(fuseName) {
+    var shortFuseName = fuseName[0].toLowerCase() + "fuse";
+    var fuseValue = "0x" + fuseObj[fuseName].toString(16).padStart(2, "0");
+    return "-U ".concat(shortFuseName, ":w:").concat(fuseValue, ":m");
+  }
+
+  function handleUpdateFuse(event, fuse) {
+    $$invalidate(6, fuseObj[fuse.name] = event.detail.mask, fuseObj);
+  }
+
+  function handleCopy() {
+    navigator.clipboard.writeText(command);
+    $$invalidate(2, messageShow = true);
+    setTimeout(function () {
+      $$invalidate(2, messageShow = false);
+    }, 600);
+  }
+
   var writable_props = ["data"];
   Object_1.keys($$props).forEach(function (key) {
-    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn("<FuseCalc> was created with unknown prop '".concat(key, "'"));
+    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<FuseCalc> was created with unknown prop '".concat(key, "'"));
   });
+
+  var update_handler = function update_handler(fuse, e) {
+    return handleUpdateFuse(e, fuse);
+  };
 
   $$self.$set = function ($$props) {
     if ("data" in $$props) $$invalidate(0, data = $$props.data);
@@ -1433,24 +1528,36 @@ function instance$3($$self, $$props, $$invalidate) {
   $$self.$capture_state = function () {
     return {
       data: data,
-      fuseObj: fuseObj
+      fuseObj: fuseObj,
+      command: command,
+      messageShow: messageShow,
+      message: message
     };
   };
 
   $$self.$inject_state = function ($$props) {
     if ("data" in $$props) $$invalidate(0, data = $$props.data);
-    if ("fuseObj" in $$props) $$invalidate(1, fuseObj = $$props.fuseObj);
+    if ("fuseObj" in $$props) $$invalidate(6, fuseObj = $$props.fuseObj);
+    if ("command" in $$props) $$invalidate(1, command = $$props.command);
+    if ("messageShow" in $$props) $$invalidate(2, messageShow = $$props.messageShow);
+    if ("message" in $$props) $$invalidate(3, message = $$props.message);
   };
 
   $$self.$$.update = function () {
     if ($$self.$$.dirty &
     /*data*/
     1) {
-       $$invalidate(1, fuseObj = getFuseNames());
+       $$invalidate(6, fuseObj = getFuseNames());
+    }
+
+    if ($$self.$$.dirty &
+    /*fuseObj*/
+    64) {
+       $$invalidate(1, command = "avrdude.exe ".concat(Object.keys(fuseObj).map(singleDudeFuse).join(" ")));
     }
   };
 
-  return [data, fuseObj];
+  return [data, command, messageShow, message, handleUpdateFuse, handleCopy, fuseObj, getFuseNames, singleDudeFuse, update_handler];
 }
 
 var FuseCalc =

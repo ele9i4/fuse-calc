@@ -34,10 +34,11 @@
     display: flex;
   }
   .bit {
-    width: 10px;
-    height: 10px;
-    margin-right: 2px;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
     border: 1px solid blue;
+    border-radius: 2px;
     background: lightgray;
   }
   .bitfield .active {

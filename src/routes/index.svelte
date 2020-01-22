@@ -53,8 +53,8 @@
     <div class="inputs">
       <label>
         Filter:
-        <input type="text" bind:value={filter}>
       </label>
+      <input type="text" bind:value={filter}>
       <br>
       {#if filteredList.length}
         <select bind:value={selected}>
@@ -68,15 +68,43 @@
         <p>Loading...</p>
       {/if}
     </div>
+    <div class="divider" />
     <FuseCalc data={ucData} />
   </div>
 </AnimPage>
 
-<style>
+<style lang="postcss">
   .wrapper {
     display: flex;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    @media (max-width: 768px) {
+      flex-flow: column;
+    }
+    padding: 16px;
+  }
+  .divider {
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-bottom: 16px;
+    @media (min-width: 767px) {
+      display: none;
+    }
   }
   .inputs {
     display: block;
+    margin-bottom: 16px;
+  }
+  input {
+    width: 100%;
+    margin-bottom: 8px;
+    font-size: 1.2em;
+    padding: 4px;
+  }
+  select {
+    width: 100%;
+    font-size: 1.2em;
+    padding: 4px;
   }
 </style>

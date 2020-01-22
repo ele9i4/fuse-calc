@@ -22,7 +22,9 @@
 </script>
 
 <div class="single-fuse">
-  <p>{fuse.name}: 0x{mask.toString(16).padStart(2, '0').toUpperCase()}</p>
+  <div class="fuse-name">
+    <b>{fuse.name}:</b> 0x{mask.toString(16).padStart(2, '0').toUpperCase()}
+  </div>
   <BitMask {mask} fillMask={0xFF} type="fuse" on:update={handleBitMaskUpdate}/>
   {#each fuse.bitFields as bitField}
     <BitField
@@ -37,5 +39,10 @@
     padding: 8px;
     display: flex;
     flex-flow: column;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  .fuse-name {
+    margin-bottom: 4px;
   }
 </style>

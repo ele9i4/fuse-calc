@@ -39,7 +39,11 @@
 
 <div class="wrapper">
   {#if data && data.name}
-    <div class="name">Selected uc: {data.name}</div>
+    <div class="name">Selected microcontroller:
+      <b>
+        {data.name}
+      </b>
+    </div>
     <div class="command">Command:
       <pre class="command-line" on:click={handleCopy}>
         {command}
@@ -55,7 +59,7 @@
       {/each}
     </div>
   {:else}
-    <p>Select uc</p>
+    <p>Select microcontroller</p>
   {/if}
 </div>
 
@@ -67,18 +71,25 @@
   .fuses {
     display: flex;
   }
-
   .command-line {
     padding: 4px 8px;
     background: lightgray;
     cursor: pointer;
+    overflow: auto;
   }
-
   .message {
     opacity: 0;
     transition: 0.3s
   }
   .message-show {
     opacity: 1;
+  }
+  .name {
+    margin-bottom: 8px;
+  }
+  .fuses {
+    @media (max-width: 768px) {
+      flex-flow: column;
+    }
   }
 </style>

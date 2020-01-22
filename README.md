@@ -1,5 +1,4 @@
-# sapper-boilerplate
+## Atmel Fuse calculator
 
-## TODO:
-- export to {pathname}
-- server to {pathname}
+Link: https://ele9i4.github.io/fuse-calc/
+

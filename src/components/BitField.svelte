@@ -19,9 +19,9 @@
   <p>{bitField.name}</p>
   <BitMask {mask} {fillMask} type="bitfield" on:update />
   {#if bitField.valueLabel}
-    {bitField.valuesArray.values.find (({value}) => {
+    {(bitField.valuesArray.values.find (({value}) => {
       return (( parseInt(value, 16) << shift) === mask);
-    }).name}
+    }) || {name: 'Unused bits combination'}).name}
   {/if}
 </div>
 

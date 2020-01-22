@@ -1470,9 +1470,9 @@ function (_SvelteComponentDev) {
 var ignore = [];
 var components = [{
   js: function js() {
-    return import('./index.93eaca29.js');
+    return import('./index.20f6a84f.js');
   },
-  css: ["legacy/index.93eaca29.css","legacy/AnimatePage.e4222f04.css"]
+  css: ["legacy/index.20f6a84f.css","legacy/AnimatePage.e4222f04.css"]
 }, {
   js: function js() {
     return import('./about.6198dd90.js');

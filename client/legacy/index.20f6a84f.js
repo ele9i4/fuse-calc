@@ -653,7 +653,7 @@ function get_each_context$1(ctx, list, i) {
   var child_ctx = ctx.slice();
   child_ctx[6] = list[i];
   return child_ctx;
-} // (29:2) {#each fuse.bitFields as bitField}
+} // (30:2) {#each fuse.bitFields as bitField}
 
 
 function create_each_block$1(ctx) {
@@ -729,14 +729,14 @@ function create_each_block$1(ctx) {
     block: block,
     id: create_each_block$1.name,
     type: "each",
-    source: "(29:2) {#each fuse.bitFields as bitField}",
+    source: "(30:2) {#each fuse.bitFields as bitField}",
     ctx: ctx
   });
   return block;
 }
 
 function create_fragment$2(ctx) {
-  var div1;
+  var div2;
   var div0;
   var b;
   var t0_value =
@@ -751,6 +751,8 @@ function create_fragment$2(ctx) {
   var t3;
   var t4;
   var t5;
+  var div1;
+  var t6;
   var current;
   var bitmask = new BitMask({
     props: {
@@ -782,7 +784,7 @@ function create_fragment$2(ctx) {
 
   var block = {
     c: function create() {
-      div1 = element("div");
+      div2 = element("div");
       div0 = element("div");
       b = element("b");
       t0 = text(t0_value);
@@ -792,6 +794,8 @@ function create_fragment$2(ctx) {
       t4 = space();
       create_component(bitmask.$$.fragment);
       t5 = space();
+      div1 = element("div");
+      t6 = space();
 
       for (var _i = 0; _i < each_blocks.length; _i += 1) {
         each_blocks[_i].c();
@@ -800,11 +804,11 @@ function create_fragment$2(ctx) {
       this.h();
     },
     l: function claim(nodes) {
-      div1 = claim_element(nodes, "DIV", {
+      div2 = claim_element(nodes, "DIV", {
         class: true
       });
-      var div1_nodes = children(div1);
-      div0 = claim_element(div1_nodes, "DIV", {
+      var div2_nodes = children(div2);
+      div0 = claim_element(div2_nodes, "DIV", {
         class: true
       });
       var div0_nodes = children(div0);
@@ -816,38 +820,47 @@ function create_fragment$2(ctx) {
       t2 = claim_text(div0_nodes, " 0x");
       t3 = claim_text(div0_nodes, t3_value);
       div0_nodes.forEach(detach_dev);
-      t4 = claim_space(div1_nodes);
-      claim_component(bitmask.$$.fragment, div1_nodes);
-      t5 = claim_space(div1_nodes);
+      t4 = claim_space(div2_nodes);
+      claim_component(bitmask.$$.fragment, div2_nodes);
+      t5 = claim_space(div2_nodes);
+      div1 = claim_element(div2_nodes, "DIV", {
+        class: true
+      });
+      children(div1).forEach(detach_dev);
+      t6 = claim_space(div2_nodes);
 
       for (var _i2 = 0; _i2 < each_blocks.length; _i2 += 1) {
-        each_blocks[_i2].l(div1_nodes);
+        each_blocks[_i2].l(div2_nodes);
       }
 
-      div1_nodes.forEach(detach_dev);
+      div2_nodes.forEach(detach_dev);
       this.h();
     },
     h: function hydrate() {
       add_location(b, file$2, 25, 4, 631);
-      attr_dev(div0, "class", "fuse-name svelte-11h357m");
+      attr_dev(div0, "class", "fuse-name svelte-1ciz5bd");
       add_location(div0, file$2, 24, 2, 603);
-      attr_dev(div1, "class", "single-fuse svelte-11h357m");
-      add_location(div1, file$2, 23, 0, 575);
+      attr_dev(div1, "class", "divider svelte-1ciz5bd");
+      add_location(div1, file$2, 28, 2, 795);
+      attr_dev(div2, "class", "single-fuse svelte-1ciz5bd");
+      add_location(div2, file$2, 23, 0, 575);
     },
     m: function mount(target, anchor) {
-      insert_dev(target, div1, anchor);
-      append_dev(div1, div0);
+      insert_dev(target, div2, anchor);
+      append_dev(div2, div0);
       append_dev(div0, b);
       append_dev(b, t0);
       append_dev(b, t1);
       append_dev(div0, t2);
       append_dev(div0, t3);
-      append_dev(div1, t4);
-      mount_component(bitmask, div1, null);
-      append_dev(div1, t5);
+      append_dev(div2, t4);
+      mount_component(bitmask, div2, null);
+      append_dev(div2, t5);
+      append_dev(div2, div1);
+      append_dev(div2, t6);
 
       for (var _i3 = 0; _i3 < each_blocks.length; _i3 += 1) {
-        each_blocks[_i3].m(div1, null);
+        each_blocks[_i3].m(div2, null);
       }
 
       current = true;
@@ -897,7 +910,7 @@ function create_fragment$2(ctx) {
 
             transition_in(each_blocks[_i4], 1);
 
-            each_blocks[_i4].m(div1, null);
+            each_blocks[_i4].m(div2, null);
           }
         }
 
@@ -931,7 +944,7 @@ function create_fragment$2(ctx) {
       current = false;
     },
     d: function destroy(detaching) {
-      if (detaching) detach_dev(div1);
+      if (detaching) detach_dev(div2);
       destroy_component(bitmask);
       destroy_each(each_blocks, detaching);
     }
@@ -1067,7 +1080,7 @@ function create_else_block(ctx) {
       this.h();
     },
     h: function hydrate() {
-      add_location(p, file$3, 61, 4, 1568);
+      add_location(p, file$3, 61, 4, 1584);
     },
     m: function mount(target, anchor) {
       insert_dev(target, p, anchor);
@@ -1134,7 +1147,7 @@ function create_if_block$1(ctx) {
       t1 = text(t1_value);
       t2 = space();
       div1 = element("div");
-      t3 = text("Command:\n      ");
+      t3 = text("Command (click to copy):\n      ");
       pre = element("pre");
       t4 = text(
       /*command*/
@@ -1169,7 +1182,7 @@ function create_if_block$1(ctx) {
         class: true
       });
       var div1_nodes = children(div1);
-      t3 = claim_text(div1_nodes, "Command:\n      ");
+      t3 = claim_text(div1_nodes, "Command (click to copy):\n      ");
       pre = claim_element(div1_nodes, "PRE", {
         class: true
       });
@@ -1203,19 +1216,19 @@ function create_if_block$1(ctx) {
     },
     h: function hydrate() {
       add_location(b, file$3, 42, 6, 1133);
-      attr_dev(div0, "class", "name svelte-kzq1gh");
+      attr_dev(div0, "class", "name svelte-136alev");
       add_location(div0, file$3, 41, 4, 1083);
-      attr_dev(pre, "class", "command-line svelte-kzq1gh");
-      add_location(pre, file$3, 47, 6, 1219);
+      attr_dev(pre, "class", "command-line svelte-136alev");
+      add_location(pre, file$3, 47, 6, 1235);
       attr_dev(div1, "class", "command");
       add_location(div1, file$3, 46, 4, 1183);
-      attr_dev(div2, "class", "message svelte-kzq1gh");
+      attr_dev(div2, "class", "message svelte-136alev");
       toggle_class(div2, "message-show",
       /*messageShow*/
       ctx[2]);
-      add_location(div2, file$3, 51, 4, 1314);
-      attr_dev(div3, "class", "fuses svelte-kzq1gh");
-      add_location(div3, file$3, 55, 4, 1401);
+      add_location(div2, file$3, 51, 4, 1330);
+      attr_dev(div3, "class", "fuses svelte-136alev");
+      add_location(div3, file$3, 55, 4, 1417);
     },
     m: function mount(target, anchor) {
       insert_dev(target, div0, anchor);
@@ -1445,7 +1458,7 @@ function create_fragment$3(ctx) {
       this.h();
     },
     h: function hydrate() {
-      attr_dev(div, "class", "wrapper svelte-kzq1gh");
+      attr_dev(div, "class", "wrapper svelte-136alev");
       add_location(div, file$3, 39, 0, 1031);
     },
     m: function mount(target, anchor) {
@@ -1756,7 +1769,7 @@ function create_if_block$2(ctx) {
       this.h();
     },
     h: function hydrate() {
-      attr_dev(select, "class", "svelte-s3k764");
+      attr_dev(select, "class", "svelte-crsxf9");
       if (
       /*selected*/
       ctx[1] === void 0) add_render_callback(function () {
@@ -1974,14 +1987,14 @@ function create_default_slot(ctx) {
     h: function hydrate() {
       add_location(label, file$4, 53, 6, 1254);
       attr_dev(input, "type", "text");
-      attr_dev(input, "class", "svelte-s3k764");
+      attr_dev(input, "class", "svelte-crsxf9");
       add_location(input, file$4, 56, 6, 1299);
       add_location(br, file$4, 57, 6, 1345);
-      attr_dev(div0, "class", "inputs svelte-s3k764");
+      attr_dev(div0, "class", "inputs svelte-crsxf9");
       add_location(div0, file$4, 52, 4, 1227);
-      attr_dev(div1, "class", "divider svelte-s3k764");
+      attr_dev(div1, "class", "divider svelte-crsxf9");
       add_location(div1, file$4, 70, 4, 1678);
-      attr_dev(div2, "class", "wrapper svelte-s3k764");
+      attr_dev(div2, "class", "wrapper svelte-crsxf9");
       add_location(div2, file$4, 51, 2, 1201);
     },
     m: function mount(target, anchor) {

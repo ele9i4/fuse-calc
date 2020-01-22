@@ -44,7 +44,7 @@
         {data.name}
       </b>
     </div>
-    <div class="command">Command:
+    <div class="command">Command (click to copy):
       <pre class="command-line" on:click={handleCopy}>
         {command}
       </pre>
@@ -67,19 +67,22 @@
   .wrapper {
     display: flex;
     flex-flow: column;
+    max-width: 100%;
   }
   .fuses {
     display: flex;
   }
   .command-line {
     padding: 4px 8px;
+    margin: 0;
     background: lightgray;
     cursor: pointer;
     overflow: auto;
   }
   .message {
     opacity: 0;
-    transition: 0.3s
+    transition: 0.3s;
+    margin-bottom: 8px;
   }
   .message-show {
     opacity: 1;

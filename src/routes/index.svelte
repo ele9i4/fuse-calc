@@ -76,20 +76,26 @@
 <style lang="postcss">
   .wrapper {
     display: flex;
-    height: 100%;
+    height: auto;
+    max-height: 100%;
     width: 100%;
     overflow: auto;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: center;
+    padding: 16px;
     @media (max-width: 768px) {
+      justify-content: flex-start;
       flex-flow: column;
     }
-    padding: 16px;
   }
   .divider {
     border: 1px solid #ccc;
     width: 100%;
     margin-bottom: 16px;
     @media (min-width: 767px) {
-      display: none;
+      border: none;
+      width: 32px;
     }
   }
   .inputs {

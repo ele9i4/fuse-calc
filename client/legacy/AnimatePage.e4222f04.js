@@ -61,7 +61,7 @@ function create_fragment(ctx) {
       this.h();
     },
     h: function hydrate() {
-      attr_dev(div, "class", "svelte-67i282");
+      attr_dev(div, "class", "svelte-1uwj4pi");
       add_location(div, file, 4, 0, 63);
     },
     m: function mount(target, anchor) {

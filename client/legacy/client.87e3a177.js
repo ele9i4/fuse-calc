@@ -1470,14 +1470,14 @@ function (_SvelteComponentDev) {
 var ignore = [];
 var components = [{
   js: function js() {
-    return import('./index.49b088f3.js');
+    return import('./index.93eaca29.js');
   },
-  css: ["legacy/index.49b088f3.css","legacy/AnimatePage.11bb8ad5.css"]
+  css: ["legacy/index.93eaca29.css","legacy/AnimatePage.e4222f04.css"]
 }, {
   js: function js() {
-    return import('./about.6464d8d7.js');
+    return import('./about.6198dd90.js');
   },
-  css: ["legacy/AnimatePage.11bb8ad5.css"]
+  css: ["legacy/AnimatePage.e4222f04.css"]
 }];
 var routes = [{
   // index.svelte

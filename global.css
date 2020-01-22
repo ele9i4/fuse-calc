@@ -1,22 +1,5 @@
 :root {
-  --color-primary: #ffffff;
-  --color-disabled: #aaaaaa;
-  --color-primary-bg: #3c40c6;
-  --color-primary-bg-darker: #232577;
-  --color-disabled-bg: #596275;
-  --color-disabled-bg-darker: #353a46;
-  --color-error: #d43939;
-  --color-error-darker: #841c1c;
-  --color-success: #28bd14;
-  --color-success: #18710b;
   --font-size: 2rem;
-  --color-yellow: #ffd32a;
-  --color-pink: #ef5777;
-  --color-blue: #3c40c6;
-  --color-green: #0be881;
-  --color-grey: #485460;
-  --color-lightgrey: #808e9b;
-  --color-red: #ff3f34;
 }
 
 html {
@@ -44,4 +27,5 @@ body {
   display: flex;
   flex-flow: column;
   height: 100%;
+  overflow: hidden;
 }

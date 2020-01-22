@@ -340,11 +340,13 @@ function (_SvelteComponentDev) {
 var file$1 = "src/components/BitField.svelte"; // (21:2) {#if bitField.valueLabel}
 
 function create_if_block(ctx) {
-  var t_value =
+  var t_value = (
   /*bitField*/
   ctx[0].valuesArray.values.find(
   /*func*/
-  ctx[7]).name + "";
+  ctx[7]) || {
+    name: "Unused bits combination"
+  }).name + "";
   var t;
   var block = {
     c: function create() {
@@ -359,11 +361,13 @@ function create_if_block(ctx) {
     p: function update(ctx, dirty) {
       if (dirty &
       /*bitField, shift, mask*/
-      13 && t_value !== (t_value =
+      13 && t_value !== (t_value = (
       /*bitField*/
       ctx[0].valuesArray.values.find(
       /*func*/
-      ctx[7]).name + "")) set_data_dev(t, t_value);
+      ctx[7]) || {
+        name: "Unused bits combination"
+      }).name + "")) set_data_dev(t, t_value);
     },
     d: function destroy(detaching) {
       if (detaching) detach_dev(t);

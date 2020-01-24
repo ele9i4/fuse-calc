@@ -2,7 +2,7 @@
   import { fly } from 'svelte/transition';
 </script>
 
-<div in:fly={{ x: 200, duration: 300}} out:fly={{ x: -200, duration: 300}}>
+<div in:fly|local={{ x: 200, duration: 300}} out:fly|local={{ x: -200, duration: 300}}>
   <slot/>
 </div>
 

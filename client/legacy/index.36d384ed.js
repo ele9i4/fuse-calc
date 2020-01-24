@@ -294,8 +294,12 @@ function validate_store(store, name) {
   }
 }
 
-function subscribe(store, callback) {
-  var unsub = store.subscribe(callback);
+function subscribe(store) {
+  for (var _len = arguments.length, callbacks = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    callbacks[_key - 1] = arguments[_key];
+  }
+
+  var unsub = store.subscribe.apply(store, callbacks);
   return unsub.unsubscribe ? function () {
     return unsub.unsubscribe();
   } : unsub;
@@ -1009,6 +1013,20 @@ function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, looku
   return new_blocks;
 }
 
+function validate_each_keys(ctx, list, get_context, get_key) {
+  var keys = new Set();
+
+  for (var i = 0; i < list.length; i++) {
+    var key = get_key(get_context(ctx, list, i));
+
+    if (keys.has(key)) {
+      throw new Error("Cannot have duplicate keys in a keyed each");
+    }
+
+    keys.add(key);
+  }
+}
+
 function get_spread_update(levels, updates) {
   var update = {};
   var to_null_out = {};
@@ -1026,23 +1044,23 @@ function get_spread_update(levels, updates) {
         if (!(key in n)) to_null_out[key] = 1;
       }
 
-      for (var _key2 in n) {
-        if (!accounted_for[_key2]) {
-          update[_key2] = n[_key2];
-          accounted_for[_key2] = 1;
+      for (var _key3 in n) {
+        if (!accounted_for[_key3]) {
+          update[_key3] = n[_key3];
+          accounted_for[_key3] = 1;
         }
       }
 
       levels[i] = n;
     } else {
-      for (var _key3 in o) {
-        accounted_for[_key3] = 1;
+      for (var _key4 in o) {
+        accounted_for[_key4] = 1;
       }
     }
   }
 
-  for (var _key4 in to_null_out) {
-    if (!(_key4 in update)) update[_key4] = undefined;
+  for (var _key5 in to_null_out) {
+    if (!(_key5 in update)) update[_key5] = undefined;
   }
 
   return update;
@@ -1261,7 +1279,7 @@ function () {
 
 function dispatch_dev(type, detail) {
   document.dispatchEvent(custom_event(type, Object.assign({
-    version: '3.17.2'
+    version: '3.17.3'
   }, detail)));
 }
 
@@ -1371,4 +1389,4 @@ function (_SvelteComponent) {
   return SvelteComponentDev;
 }(SvelteComponent);
 
-export { validate_store as $, claim_space as A, mount_component as B, transition_in as C, transition_out as D, destroy_component as E, group_outros as F, check_outros as G, destroy_each as H, create_slot as I, get_slot_context as J, get_slot_changes as K, globals as L, empty as M, query_selector_all as N, assign as O, get_spread_update as P, get_spread_object as Q, setContext as R, SvelteComponentDev as S, add_render_callback as T, create_in_transition as U, create_out_transition as V, createEventDispatcher as W, toggle_class as X, listen_dev as Y, bubble as Z, _typeof as _, _inherits as a, component_subscribe as a0, onMount as a1, set_store_value as a2, select_value as a3, set_input_value as a4, prop_dev as a5, select_option as a6, update_keyed_each as a7, destroy_block as a8, _classCallCheck as b, _possibleConstructorReturn as c, _getPrototypeOf as d, _assertThisInitialized as e, dispatch_dev as f, _createClass as g, element as h, init as i, claim_element as j, children as k, claim_text as l, detach_dev as m, noop as n, attr_dev as o, null_to_empty as p, add_location as q, insert_dev as r, safe_not_equal as s, text as t, append_dev as u, _slicedToArray as v, set_data_dev as w, create_component as x, space as y, claim_component as z };
+export { validate_store as $, claim_space as A, mount_component as B, transition_in as C, transition_out as D, destroy_component as E, group_outros as F, check_outros as G, destroy_each as H, create_slot as I, get_slot_context as J, get_slot_changes as K, globals as L, empty as M, query_selector_all as N, assign as O, get_spread_update as P, get_spread_object as Q, setContext as R, SvelteComponentDev as S, add_render_callback as T, create_in_transition as U, create_out_transition as V, createEventDispatcher as W, toggle_class as X, listen_dev as Y, bubble as Z, _typeof as _, _inherits as a, component_subscribe as a0, onMount as a1, set_store_value as a2, select_value as a3, set_input_value as a4, validate_each_keys as a5, prop_dev as a6, select_option as a7, update_keyed_each as a8, destroy_block as a9, _classCallCheck as b, _possibleConstructorReturn as c, _getPrototypeOf as d, _assertThisInitialized as e, dispatch_dev as f, _createClass as g, element as h, init as i, claim_element as j, children as k, claim_text as l, detach_dev as m, noop as n, attr_dev as o, null_to_empty as p, add_location as q, insert_dev as r, safe_not_equal as s, text as t, append_dev as u, _slicedToArray as v, set_data_dev as w, create_component as x, space as y, claim_component as z };

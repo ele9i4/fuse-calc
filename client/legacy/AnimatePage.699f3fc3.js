@@ -1,4 +1,4 @@
-import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, i as init, s as safe_not_equal, e as _assertThisInitialized, f as dispatch_dev, S as SvelteComponentDev, I as create_slot, h as element, j as claim_element, k as children, m as detach_dev, o as attr_dev, q as add_location, r as insert_dev, v as _slicedToArray, J as get_slot_context, K as get_slot_changes, C as transition_in, T as add_render_callback, U as create_in_transition, D as transition_out, V as create_out_transition } from './index.425cd525.js';
+import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, i as init, s as safe_not_equal, e as _assertThisInitialized, f as dispatch_dev, S as SvelteComponentDev, I as create_slot, h as element, j as claim_element, k as children, m as detach_dev, o as attr_dev, q as add_location, r as insert_dev, v as _slicedToArray, J as get_slot_context, K as get_slot_changes, C as transition_in, T as add_render_callback, U as create_in_transition, D as transition_out, V as create_out_transition } from './index.36d384ed.js';
 
 function cubicOut(t) {
   var f = t - 1.0;
@@ -90,23 +90,31 @@ function create_fragment(ctx) {
     i: function intro(local) {
       if (current) return;
       transition_in(default_slot, local);
-      add_render_callback(function () {
-        if (div_outro) div_outro.end(1);
-        if (!div_intro) div_intro = create_in_transition(div, fly, {
-          x: 200,
-          duration: 300
+
+      if (local) {
+        add_render_callback(function () {
+          if (div_outro) div_outro.end(1);
+          if (!div_intro) div_intro = create_in_transition(div, fly, {
+            x: 200,
+            duration: 300
+          });
+          div_intro.start();
         });
-        div_intro.start();
-      });
+      }
+
       current = true;
     },
     o: function outro(local) {
       transition_out(default_slot, local);
       if (div_intro) div_intro.invalidate();
-      div_outro = create_out_transition(div, fly, {
-        x: -200,
-        duration: 300
-      });
+
+      if (local) {
+        div_outro = create_out_transition(div, fly, {
+          x: -200,
+          duration: 300
+        });
+      }
+
       current = false;
     },
     d: function destroy(detaching) {

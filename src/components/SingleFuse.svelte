@@ -40,6 +40,7 @@
     padding: 8px 8px 16px;
     display: flex;
     flex-flow: column;
+    flex: 1 0 auto;
     min-width: 280px;
     width: 100%;
     margin-bottom: 16px;
